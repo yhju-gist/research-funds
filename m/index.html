@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>연구비 담당자 런처 (모바일)</title>
+<style id="lockStyle">
+body{margin:0;font-family:"Malgun Gothic","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;background:#111827;color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.lock{width:min(360px,92vw);text-align:center}
+.lock h1{font-size:22px;margin:0 0 6px}.lock p{color:#9ca3af;font-size:14px;margin:0 0 18px}
+.lock input[type=password]{width:100%;box-sizing:border-box;padding:14px;border-radius:12px;border:0;font-size:17px}
+.lock button{width:100%;margin-top:10px;padding:14px;border-radius:12px;border:0;background:#2563eb;color:#fff;font-size:17px;font-weight:700}
+.lock label{display:block;margin-top:12px;font-size:14px;color:#d1d5db}
+.lock .err{color:#fca5a5;margin-top:10px;font-size:14px;min-height:20px}
+</style>
+</head>
+<body>
+<div class="lock" id="lock">
+  <div style="font-size:44px">🔐</div>
+  <h1>연구비 담당자 런처</h1>
+  <p>환경·에너지공학과 · 담당자 전용</p>
+  <form id="f"><input type="password" id="pw" placeholder="암호" autocomplete="current-password" autofocus>
+  <button id="go">열기</button>
+  <label><input type="checkbox" id="remember"> 이 휴대폰에서 암호 기억</label></form>
+  <div class="err" id="err"></div>
+</div>
+<script>
+// 이 파일은 고칠 필요가 없습니다. 내용은 같은 폴더의 data.enc(PC 런처 '처음 오셨나요' 탭 → 모바일용 내보내기)에 암호화되어 있습니다.
+const SHELL=`<div class="app"><aside class="side"><div class="brand">연구비 담당자 런처<small>환경·에너지공학과 연구비 담당</small></div><nav class="nav" id="nav"></nav><div class="foot"><span id="ver"></span></div></aside><main class="main" id="main"></main></div><div class="detail" id="detail"><button class="close" onclick="closeDetail()">×</button><div id="detailBody"></div></div>`;
+const ub=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+let encFile=null;
+async function load(){ if(encFile) return encFile; const r=await fetch("data.enc?"+Date.now(),{cache:"no-store"}); if(!r.ok) throw new Error("data.enc 파일이 없습니다 (GitHub m 폴더에 올렸는지 확인)"); encFile=await r.json(); return encFile; }
+async function decryptEnc(pw){
+  const E=await load();
+  const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
+  const key=await crypto.subtle.deriveKey({name:"PBKDF2",salt:ub(E.salt),iterations:E.iter||250000,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["decrypt"]);
+  let plain; try{ plain=await crypto.subtle.decrypt({name:"AES-GCM",iv:ub(E.iv)},key,ub(E.ct)); }catch(e){ throw new Error("암호가 맞지 않습니다"); }
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+function start(P){
+  document.getElementById("lockStyle").remove();
+  const st=document.createElement("style"); st.textContent=P.css; document.head.appendChild(st);
+  document.body.removeAttribute("style"); document.body.innerHTML=SHELL;
+  window.GD=P.GD;
+  if(P.checks){ window.GDCHECK=(new Function("return ("+P.checks+")()"))(); }
+  (new Function(P.app))();
+}
+async function tryOpen(pw, remember){
+  const err=document.getElementById("err"), btn=document.getElementById("go");
+  btn.disabled=true; btn.textContent="여는 중…"; err.textContent="";
+  try{ const P=await decryptEnc(pw); if(remember){ try{ localStorage.setItem("gd.m.pw",pw); }catch(e){} } start(P); }
+  catch(e){ err.textContent=e.message; btn.disabled=false; btn.textContent="열기"; try{ localStorage.removeItem("gd.m.pw"); }catch(_){} }
+}
+document.getElementById("f").onsubmit=e=>{ e.preventDefault(); tryOpen(document.getElementById("pw").value, document.getElementById("remember").checked); };
+if(!(window.crypto&&crypto.subtle)) document.getElementById("err").textContent="이 브라우저는 지원하지 않습니다 (https 주소로 열어 주세요)";
+else { let saved=null; try{ saved=localStorage.getItem("gd.m.pw"); }catch(e){} if(saved) tryOpen(saved,true); }
+</script>
+</body>
+</html>
