@@ -37,6 +37,12 @@ function GDCHECK_FACTORY(){
     "expert": [ {k:"useDate", label:"자문(활용) 날짜", type:"date"}, {k:"applyDate", label:"전문가활용신청서 날짜", type:"date"},
                 {k:"grade", label:"전문가 등급", type:"select", options:["A","B","C","모름"]}, {k:"days", label:"활용 일수", type:"number", ph:"1"} ],
     "meeting": [ {k:"meetDate", label:"회의 날짜", type:"date"}, {k:"attendees", label:"전체 참석자 수", type:"number"}, {k:"external", label:"그중 외부기관 참석자 수", type:"number"} ],
+    "eqi": [ {k:"inst", label:"장비 기관", type:"select", options:["중앙기기연구소","고등광기술연구원","생명과학과","전기전자컴퓨터공학과"]},
+             {k:"claims", label:"청구서번호 (여러 개는 쉼표)", type:"text", ph:"202609-C-0537, 202609-C-0736"} ],
+    "refund": [ {k:"depositDate", label:"입금한 날짜", type:"date"}, {k:"depositor", label:"입금자명", type:"text", ph:"통장에 찍힌 이름"},
+                {k:"reason", label:"반납 사유", type:"select", options:["국내출장 운임 차액","국내출장 식비 반납","국내출장 숙박 반납","출장 전액 반납(취소)","국외출장 차액","기타"]},
+                {k:"origPps", label:"원래 지급신청번호(알면)", type:"text", ph:"예: 20260915-123 — 모르면 비워 두세요"},
+                {k:"origTrip", label:"원래 출장 날짜·장소(알면)", type:"text", ph:"예: 9.15. 서울 학회"} ],
     "overtime-meal": [ {k:"mealDate", label:"식사 날짜", type:"date"}, {k:"mealTime", label:"결제 시각", type:"time"}, {k:"people", label:"인원(명)", type:"number"} ]
   };
 
@@ -97,6 +103,19 @@ function GDCHECK_FACTORY(){
       if(f.external!==undefined&&f.external!==""){ num(f.external)>=LIMIT.meetingExternalMin?O(`외부기관 참석자 ${num(f.external)}명`):E("외부기관 참석자가 없습니다 — 회의비는 외부기관 참여자 1명 이상이 필수입니다"); }
       else I("외부기관 참석자 수를 넣으면 확인합니다");
       if(f.attendees&&f.external&&num(f.external)>num(f.attendees)) E("외부 참석자 수가 전체 참석자 수보다 많습니다");
+    }
+    if(typeId==="eqi"){
+      const list=String(f.claims||"").split(/[,\s]+/).filter(Boolean), bad=list.filter(x=>!/^\d{6}-[A-Z]-\d{4}$/.test(x));
+      if(!list.length) E("청구서번호를 적어 주세요 (예: 202609-C-0537)");
+      else if(bad.length) E(`청구서번호 모양이 다릅니다: ${bad.join(", ")} — 예) 202609-C-0537`);
+      else { const dup=list.filter((x,i)=>list.indexOf(x)!==i); dup.length?E(`같은 청구서번호가 두 번 있습니다: ${[...new Set(dup)].join(", ")}`):O(`청구서 ${list.length}건`); }
+      if(!f.inst) I("장비 기관을 고르면 담당자가 바로 찾습니다");
+      I("연구계정 칸에 대체할 과제번호를 꼭 적어 주세요");
+    }
+    if(typeId==="refund"){
+      if(!f.depositDate) E("입금한 날짜를 적어 주세요"); else if(sub&&diff(f.depositDate,sub)<0) W("입금일이 오늘보다 뒤입니다 — 입금 후 접수해 주세요");
+      if(!amt) E("반납 금액을 적어 주세요");
+      I("담당자가 ZEUS 입금내역(반납 계좌)에서 입금을 확인한 뒤 수입 처리합니다");
     }
     if(typeId==="overtime-meal"){
       const p=num(f.people);
