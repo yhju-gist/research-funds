@@ -175,8 +175,9 @@ footer{margin:40px 0 30px;color:var(--muted);font-size:13px;text-align:center}
 const S=window.SITE, GD=window.GD;
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-$("deptLine").textContent=`${S.deptName} · ${S.officeName}`; $("roomLine").textContent=S.officeRoom; $("updated").textContent="최근 갱신 "+S.updated;
-$("contactBox").innerHTML=`<b>${esc(S.officeName)}</b><br>${esc(S.officeRoom)}<br>전화 ${esc(S.officeTel)} · 이메일 <a href="mailto:${S.officeEmail}">${esc(S.officeEmail)}</a>`;
+$("deptLine").textContent=S.officeName.includes(S.deptName)?S.officeName:`${S.deptName} · ${S.officeName}`; $("roomLine").textContent=S.officeRoom; $("updated").textContent="최근 갱신 "+S.updated;
+const ok=v=>v&&!/^\[/.test(v);  // [내선 입력] 같은 빈칸은 화면에 안 보이게
+$("contactBox").innerHTML=`<b>${esc(S.officeName)}</b><br>종이 원본 제출: ${esc(S.officeRoom)}${ok(S.officeTel)||ok(S.officeEmail)?"<br>":""}${ok(S.officeTel)?"전화 "+esc(S.officeTel):""}${ok(S.officeTel)&&ok(S.officeEmail)?" · ":""}${ok(S.officeEmail)?`이메일 <a href="mailto:${S.officeEmail}">${esc(S.officeEmail)}</a>`:""}`;
 $("rulesList").innerHTML=GD.commonRules.map(r=>`<li>${esc(r)}</li>`).join("");
 $("pi").innerHTML=`<option value="">선택</option>`+S.professors.map(p=>`<option>${esc(p)}</option>`).join("")+`<option>기타</option>`;
 const formLink=f=>`<a href="${S.formsFolder}${encodeURIComponent(f)}" download>📎 ${esc(f.replace(/^\[붙임\d\]\s*/,""))}</a>`;
@@ -253,7 +254,7 @@ $("sendBtn").onclick=async()=>{
     const r=await fetch(S.apiUrl,{method:"POST",body:JSON.stringify(v)}); const j=await r.json(); bar.style.width="100%";
     if(!j.ok) throw new Error(j.error||"서버 오류");
     $("sendArea").style.display="none"; $("doneArea").style.display="";
-    $("doneArea").innerHTML=`<div class="result">✅ 접수되었습니다<b>${esc(j.id)}</b><div style="margin-top:6px">접수번호를 기억해 두세요. 종이 원본(영수증·거래명세서 등)은 <b>${esc(S.officeRoom)}</b>로 가져다 주세요.<br>처리 상태가 바뀌면 <b>${esc(v.email)}</b>로 메일이 갑니다.</div><div style="margin-top:10px"><button class="btn small sec" onclick="location.reload()">새 요청 올리기</button></div></div>`;
+    $("doneArea").innerHTML=`<div class="result">✅ 접수되었습니다<b>${esc(j.id)}</b><div style="margin-top:6px">접수번호를 기억해 두세요.</div><div style="margin:10px auto 0;max-width:520px;background:#fff;border:2px dashed #86efac;border-radius:12px;padding:10px 14px">📦 종이 원본(영수증·거래명세서 등)은<br><b style="display:inline;font-size:17px;color:var(--ink)">${esc(S.officeRoom)}</b>로 가져다 주세요.</div><div style="margin-top:8px">처리 상태가 바뀌면 <b>${esc(v.email)}</b>로 메일이 갑니다.</div><div style="margin-top:10px"><button class="btn small sec" onclick="location.reload()">새 요청 올리기</button></div></div>`;
     location.hash="sendStep";
   }catch(e){ $("sendErr").innerHTML=`<div class="err">보내지 못했습니다: ${esc(e.message)} — 다시 시도하거나 담당자에게 메일로 보내 주세요.</div>`; btn.disabled=false; btn.textContent="📤 요청 보내기"; prog.style.display="none"; }
 };
