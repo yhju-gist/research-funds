@@ -201,7 +201,7 @@ function pickType(id){
   $("formLinks").innerHTML=curType.form?"양식 내려받기: "+[curType.form,curType.form2].filter(Boolean).map(formLink).join(""):"";
   ["docStep","infoStep","fileStep","sendStep"].forEach(s=>$(s).style.display="");
   // 금액이 없는 요청(연구노트 등)
-  $("amount").closest("div").style.display=curType.noAmount?"none":""; $("payment").closest("div").style.display=curType.noAmount?"none":"";
+  $("amount").closest("div").style.display=curType.noAmount?"none":""; $("payment").closest("div").style.display=(curType.noAmount||curType.noPayment)?"none":"";
   // 비목별 추가 칸 + 자동검사
   const F=(window.GDCHECK&&GDCHECK.FIELDS[curType.id])||[];
   $("extraWrap").style.display=F.length?"":"none";
@@ -232,7 +232,7 @@ function shrinkImage(file){ // 사진은 1600px·JPEG로 줄여 전송
 const toB64=f=>new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(",")[1]); r.readAsDataURL(f); });
 function collect(){
   const v={ action:"submit", type:curType.name, pi:$("pi").value, name:$("name").value.trim(), email:$("email").value.trim(), project:$("project").value.trim(),
-    amount:curType.noAmount?"":$("amount").value.replace(/[^\d]/g,""), desc:$("desc").value.trim(), payment:curType.noAmount?"":$("payment").value, urgent:$("urgent").checked?"급함":"" };
+    amount:curType.noAmount?"":$("amount").value.replace(/[^\d]/g,""), desc:$("desc").value.trim(), payment:curType.noAmount?"":curType.noPayment?"대체(카드 없음)":$("payment").value, urgent:$("urgent").checked?"급함":"" };
   runCheck(); const ex=extraVals(); if(Object.keys(ex).length) v.extra=ex; v.check=window.GDCHECK?GDCHECK.summary(lastCheck):"";
   const miss=[]; if(!v.pi) miss.push("교수님"); if(!v.name) miss.push("이름"); if(!/.+@.+\..+/.test(v.email)) miss.push("이메일"); if(!v.amount&&!curType.noAmount) miss.push("금액"); if(!v.desc) miss.push("내용");
   const unchecked=[...document.querySelectorAll("#docList input")].filter(c=>!c.checked).length;
