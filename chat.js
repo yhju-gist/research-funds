@@ -55,21 +55,21 @@
   }
 
   // ---------- 화면 ----------
-  const css=`.rfbtn{position:fixed;right:16px;bottom:88px;z-index:60;border:0;border-radius:999px;background:#1e3a8a;color:#fff;font-weight:800;font-size:15px;padding:12px 16px;box-shadow:0 6px 18px rgba(0,0,0,.22);cursor:pointer}
+  const css=`.rfbtn{position:fixed;right:16px;bottom:88px;z-index:60;border:0;border-radius:999px;background:#1e3a8a;color:#fff;font-weight:800;font-size:18px;padding:14px 20px;box-shadow:0 6px 18px rgba(0,0,0,.22);cursor:pointer}
   .rfbtn:focus-visible{outline:3px solid #93c5fd}
-  .rfpan{position:fixed;right:16px;bottom:88px;z-index:61;width:min(380px,calc(100vw - 32px));height:min(560px,calc(100vh - 120px));background:#fff;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb}
-  .rfpan[hidden]{display:none}.rfhd{background:#1e3a8a;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:8px}.rfhd b{flex:1;font-size:16px}.rfhd button{background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer}
-  .rflog{flex:1;overflow:auto;padding:12px;background:#f8fafc;font-size:14px;line-height:1.55}.rfm{margin:0 0 10px;max-width:92%;padding:9px 12px;border-radius:14px;background:#fff;border:1px solid #e5e7eb}.rfm.me{margin-left:auto;background:#dbeafe;border-color:#bfdbfe}
-  .rfm ul{margin:4px 0 6px;padding-left:18px}.rfsrc{margin-top:6px;font-size:12px;color:#6b7280}.rfmore{margin-top:8px;font-size:12.5px;color:#4b5563}
-  .rfchip{display:inline-block;margin:3px 4px 0 0;border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer}
-  .rfgo{display:block;margin-top:8px;border:0;background:#16a34a;color:#fff;border-radius:10px;padding:7px 12px;font-weight:700;cursor:pointer}
+  .rfpan{position:fixed;right:16px;bottom:88px;z-index:61;width:min(460px,calc(100vw - 32px));height:min(700px,calc(100vh - 40px));bottom:20px;background:#fff;border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,.28);display:flex;flex-direction:column;overflow:hidden;border:1px solid #e5e7eb}
+  .rfpan[hidden]{display:none}.rfhd{background:#1e3a8a;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:8px}.rfhd b{flex:1;font-size:19px}.rfhd button{background:transparent;border:0;color:#fff;font-size:24px;cursor:pointer}
+  .rflog{flex:1;overflow:auto;padding:12px;background:#f8fafc;font-size:17px;line-height:1.6}.rfm{margin:0 0 10px;max-width:92%;padding:9px 12px;border-radius:14px;background:#fff;border:1px solid #e5e7eb}.rfm.me{margin-left:auto;background:#dbeafe;border-color:#bfdbfe}
+  .rfm ul{margin:4px 0 6px;padding-left:18px}.rfsrc{margin-top:6px;font-size:14px;color:#6b7280}.rfmore{margin-top:8px;font-size:15px;color:#4b5563}
+  .rfchip{display:inline-block;margin:3px 4px 0 0;border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:6px 12px;font-size:15.5px;cursor:pointer}
+  .rfgo{display:block;margin-top:8px;border:0;background:#16a34a;color:#fff;border-radius:10px;padding:10px 14px;font-size:16px;font-weight:700;cursor:pointer}
   .rfv{font-weight:800}.rfv.no{color:#b91c1c}.rfv.mid{color:#b45309}.rfv.ok{color:#15803d}
-  .rfin{display:flex;gap:6px;padding:10px;border-top:1px solid #e5e7eb;background:#fff}.rfin input{flex:1;border:1px solid #cbd5e1;border-radius:10px;padding:10px;font-size:15px}.rfin button{border:0;background:#1e3a8a;color:#fff;border-radius:10px;padding:0 14px;font-weight:700;cursor:pointer}
-  .rfnote{font-size:11.5px;color:#6b7280;padding:0 12px 8px;background:#fff}
-  @media (max-width:560px){.rfpan{right:8px;left:8px;width:auto;bottom:80px;height:calc(100vh - 100px)}.rfbtn{right:10px;bottom:84px;padding:11px 14px}}`;
+  .rfin{display:flex;gap:6px;padding:10px;border-top:1px solid #e5e7eb;background:#fff}.rfin input{flex:1;border:1px solid #cbd5e1;border-radius:10px;padding:12px;font-size:17px}.rfin button{border:0;background:#1e3a8a;color:#fff;border-radius:10px;padding:0 18px;font-size:17px;font-weight:700;cursor:pointer}
+  .rfnote{font-size:13px;color:#6b7280;padding:0 12px 8px;background:#fff}
+  @media (max-width:560px){.rfpan{right:8px;left:8px;width:auto;bottom:80px;height:min(62vh,560px);bottom:10px}.rfbtn{right:10px;bottom:84px;padding:11px 14px}}`;
   const st=document.createElement("style"); st.textContent=css; document.head.appendChild(st);
   const btn=document.createElement("button"); btn.type="button"; btn.className="rfbtn"; btn.id="rfBtn"; btn.setAttribute("aria-label","연구비 도우미 열기"); btn.textContent="💬 연구비 도우미";
-  const pan=document.createElement("section"); pan.className="rfpan"; pan.id="rfPan"; pan.hidden=true; pan.setAttribute("aria-label","연구비 도우미");
+  const pan=document.createElement("section"); pan.className="rfpan"; pan.id="rfPan"; pan.hidden=false; pan.setAttribute("aria-label","연구비 도우미");
   pan.innerHTML=`<div class="rfhd"><b>💬 연구비 도우미</b><button type="button" id="rfX" aria-label="닫기">✕</button></div>
     <div class="rflog" id="rfLog" aria-live="polite"></div>
     <div class="rfnote">규정 요약 안내예요. 최종 판단은 담당자·연구관리팀이 해요. 질문은 어디에도 저장·전송되지 않아요.</div>
@@ -86,5 +86,6 @@
   pan.addEventListener("click",e=>{ const c=e.target.closest("[data-ask]"); if(c){ ask(c.dataset.ask); return; }
     const g=e.target.closest("[data-go]"); if(g&&typeof window.pickType==="function"){ window.pickType(g.dataset.go); pan.hidden=true; btn.hidden=false; } });
   document.addEventListener("keydown",e=>{ if(e.key==="Escape"&&!pan.hidden){ pan.hidden=true; btn.hidden=false; } });
+  btn.hidden=true; hello(); log.scrollTop=0; /* 처음부터 열린 상태 */
   window.RFCHAT={answer,render,ask};
 })();
