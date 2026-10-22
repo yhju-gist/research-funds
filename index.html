@@ -239,9 +239,9 @@ body{padding-bottom:80px}
 // 화면이 안 움직일 때 원인을 바로 보이게: 오류가 나면 맨 위 빨간 띠에 표시 (담당자에게 이 글을 알려 주세요)
 window.addEventListener("error",function(e){ var b=document.getElementById("jsErr"); if(!b) return; b.style.display="block"; b.textContent="⚠️ 화면 오류: "+(e.message||"알 수 없음")+" ("+String(e.filename||"").split("/").pop()+":"+(e.lineno||"")+") — 이 문구를 담당자에게 알려 주세요"; });
 </script>
-<script src="site-config.js"></script>
-<script src="procedures.js"></script>
-<script src="checks.js"></script>
+<script src="site-config.js?v=20261022b"></script>
+<script src="procedures.js?v=20261022b"></script>
+<script src="checks.js?v=20261022b"></script>
 <script>
 const S=window.SITE, GD=window.GD;
 const $=id=>document.getElementById(id);
@@ -548,7 +548,7 @@ async function lookup(){
   }catch(e){ out.innerHTML=`<div class="err">조회 실패: ${esc(e.message)}</div>`; }
 }
 </script>
-<script src="kb.js"></script>
-<script src="chat.js"></script>
+<script src="kb.js?v=20261022b"></script>
+<script src="chat.js?v=20261022b"></script>
 </body>
 </html>
