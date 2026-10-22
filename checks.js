@@ -36,14 +36,18 @@ function GDCHECK_FACTORY(){
                       {k:"personalCard", label:"식비·숙박비를 개인카드로 냈나요?", type:"select", options:["아니요","예"]} ],
     "expert": [ {k:"useDate", label:"자문(활용) 날짜", type:"date"}, {k:"applyDate", label:"전문가활용신청서 날짜", type:"date"},
                 {k:"grade", label:"전문가 등급", type:"select", options:["A","B","C","모름"]}, {k:"days", label:"활용 일수", type:"number", ph:"1"} ],
-    "meeting": [ {k:"meetDate", label:"회의 날짜", type:"date"}, {k:"attendees", label:"전체 참석자 수", type:"number"}, {k:"external", label:"그중 외부기관 참석자 수", type:"number"} ],
+    "meeting": [ {k:"meetDate", label:"회의 날짜", type:"date"}, {k:"meetPlace", label:"장소", type:"text", ph:"예) 광주 ○○식당 / 환경에너지공학동 213호"},
+                 {k:"attendeeList", label:"참석자 (한 줄에 한 명: 이름 / 소속)", type:"textarea", ph:"홍길동 / GIST 환경에너지공학과\n김철수 / ○○대학교"},
+                 {k:"agenda", label:"안건·회의 내용 한 줄", type:"text", ph:"예) 전기화학 셀 성능 분석 결과 논의"},
+                 {k:"preApproval", label:"연구책임자 사전결재(ZEUS)", type:"select", options:["받았어요","못 받았어요","모르겠어요"]} ],
     "eqi": [ {k:"inst", label:"장비 기관", type:"select", options:["중앙기기연구소","고등광기술연구원","생명과학과","전기전자컴퓨터공학과"]},
              {k:"claims", label:"청구서번호 (여러 개는 쉼표)", type:"text", ph:"202609-C-0537, 202609-C-0736"} ],
     "refund": [ {k:"depositDate", label:"입금한 날짜", type:"date"}, {k:"depositor", label:"입금자명", type:"text", ph:"통장에 찍힌 이름"},
                 {k:"reason", label:"반납 사유", type:"select", options:["국내출장 운임 차액","국내출장 식비 반납","국내출장 숙박 반납","출장 전액 반납(취소)","국외출장 차액","기타"]},
                 {k:"origPps", label:"원래 지급신청번호(알면)", type:"text", ph:"예: 20260915-123 — 모르면 비워 두세요"},
                 {k:"origTrip", label:"원래 출장 날짜·장소(알면)", type:"text", ph:"예: 9.15. 서울 학회"} ],
-    "overtime-meal": [ {k:"mealDate", label:"식사 날짜", type:"date"}, {k:"mealTime", label:"결제 시각", type:"time"}, {k:"people", label:"인원(명)", type:"number"} ]
+    "overtime-meal": [ {k:"mealDate", label:"식사 날짜", type:"date"}, {k:"mealTime", label:"결제 시각", type:"time"},
+                       {k:"mealNames", label:"함께 야근한 사람 (한 줄에 한 명)", type:"textarea", ph:"홍길동\n김철수"}, {k:"mealWork", label:"한 일 한 줄", type:"text", ph:"예) 반응기 장기운전 데이터 측정"} ]
   };
 
   const DAY=86400000;
@@ -100,9 +104,10 @@ function GDCHECK_FACTORY(){
       I("동일기관·참여기관 소속 전문가의 자문은 불가합니다");
     }
     if(typeId==="meeting"){
-      if(f.external!==undefined&&f.external!==""){ num(f.external)>=LIMIT.meetingExternalMin?O(`외부기관 참석자 ${num(f.external)}명`):E("외부기관 참석자가 없습니다 — 회의비는 외부기관 참여자 1명 이상이 필수입니다"); }
-      else I("외부기관 참석자 수를 넣으면 확인합니다");
-      if(f.attendees&&f.external&&num(f.external)>num(f.attendees)) E("외부 참석자 수가 전체 참석자 수보다 많습니다");
+      const L=String(f.attendeeList||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);
+      if(L.length){ const ext=L.filter(x=>{ const org=(x.split(/[\/,()·]/).slice(1).join(" ")||"").trim(); return org && !/GIST|지스트|광주과학기술원/i.test(org); });
+        ext.length>=LIMIT.meetingExternalMin?O(`참석자 ${L.length}명 중 외부기관 ${ext.length}명`):W(`참석자 ${L.length}명 중 외부기관 소속이 안 보여요 — 회의비는 외부기관 참석자 1명 이상이 필요해요 (이름 / 소속 으로 적어 주세요)`); }
+      if(f.preApproval==="못 받았어요") W("사전결재가 없으면 사후결재로 처리해요 — 참석자 서명 회의록과 사유서(붙임8)를 함께 올려 주세요");
     }
     if(typeId==="eqi"){
       const list=String(f.claims||"").split(/[,\s]+/).filter(Boolean), bad=list.filter(x=>!/^\d{6}-[A-Z]-\d{4}$/.test(x));
@@ -113,12 +118,11 @@ function GDCHECK_FACTORY(){
       I("연구계정 칸에 대체할 과제번호를 꼭 적어 주세요");
     }
     if(typeId==="refund"){
-      if(!f.depositDate) E("입금한 날짜를 적어 주세요"); else if(sub&&diff(f.depositDate,sub)<0) W("입금일이 오늘보다 뒤입니다 — 입금 후 접수해 주세요");
-      if(!amt) E("반납 금액을 적어 주세요");
+      if(f.depositDate&&sub&&diff(f.depositDate,sub)<0) W("입금일이 오늘보다 뒤입니다 — 입금 후 접수해 주세요");
       I("담당자가 ZEUS 입금내역(반납 계좌)에서 입금을 확인한 뒤 수입 처리합니다");
     }
     if(typeId==="overtime-meal"){
-      const p=num(f.people);
+      const p=num(f.people)||String(f.mealNames||"").split(/\n+/).map(x=>x.trim()).filter(Boolean).length;
       if(p&&amt){ const per=Math.round(amt/p); per<=LIMIT.mealPerPerson?O(`1인당 ${won(per)} (18,000원 이내)`):E(`1인당 ${won(per)} — 1인당 18,000원을 넘습니다`); }
       else I("인원을 넣으면 1인당 금액을 확인합니다");
       if(f.mealTime){ f.mealTime>=LIMIT.mealAfter?O(`결제 ${f.mealTime} (18:00 이후)`):W(`결제 ${f.mealTime} — 야근식대는 평일 18:00 이후 사용이 원칙입니다`); }
