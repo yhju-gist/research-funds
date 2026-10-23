@@ -3,552 +3,140 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>연구비 처리 접수 — 환경·에너지공학과</title>
+<title>연구비 증빙 올리기 — 환경·에너지공학과</title>
 <style>
-:root{--ink:#1d2433;--muted:#5f6b7a;--line:#e3e7ee;--blue:#2563eb;--blue-d:#1e40af;--blue-bg:#e8f0fe;--red:#d93025;--red-bg:#fdecea;--amber-bg:#fff4e0;--amber:#b45309;--green:#15803d;--green-bg:#e6f6ec;--bg:#f6f8fb}
+:root{--ink:#1d2433;--muted:#5f6b7a;--line:#e3e7ee;--blue:#2563eb;--blue-d:#1e40af;--blue-bg:#e8f0fe;--red:#d93025;--red-bg:#fdecea;--green:#15803d;--green-bg:#e6f6ea;--bg:#f4f6fa}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
 body{margin:0;font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.6}
-header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:34px 20px}
-.wrap{max-width:1000px;margin:0 auto;padding:0 16px}
-header h1{margin:0;font-size:30px}
-header p{margin:8px 0 0;opacity:.92;font-size:17px}
-.quick{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 2px 10px rgba(0,0,0,.04)}
-.quick .wrap{display:flex;gap:4px;overflow-x:auto;padding:8px 16px}
-.quick a{white-space:nowrap;padding:8px 14px;border-radius:999px;text-decoration:none;color:#374151;font-weight:700;font-size:14px}
-.quick a:hover{background:var(--blue-bg);color:var(--blue-d)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px auto 24px}
-.steps div{background:#fff;border-radius:16px;padding:16px;box-shadow:0 4px 16px rgba(16,24,40,.08);text-align:center;font-size:15px}
-.steps .e{display:block;font-size:30px}
-h2{font-size:22px;margin:34px 0 12px;display:flex;align-items:center;gap:8px}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.btn{display:inline-block;padding:12px 22px;border-radius:12px;background:var(--blue);color:#fff;font-weight:800;text-decoration:none;font-size:16px;border:0;cursor:pointer;font-family:inherit}
-.btn.sec{background:#fff;color:var(--blue);border:2px solid var(--blue)}
-.btn.small{padding:7px 14px;font-size:14px}
-.btn:disabled{opacity:.5;cursor:default}
-.stepno{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;align-items:center;justify-content:center;margin-right:8px}
-.fstep{margin:18px 0;padding-top:14px;border-top:1px dashed var(--line)}
-.fstep h3{margin:0 0 10px;font-size:18px}
-.typegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.typegrid button{background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 8px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;color:var(--ink)}
-.typegrid button .i{display:block;font-size:26px;pointer-events:none}
-.typegrid button{touch-action:manipulation;-webkit-tap-highlight-color:rgba(37,99,235,.2);-webkit-appearance:none;appearance:none}
-.typegrid button.on{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-d)}
-.chk{list-style:none;padding:0;margin:0}
-.chk li{padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px;align-items:flex-start;font-size:15px}
-.chk input{width:20px;height:20px;margin-top:2px;flex:none}
-.tips{background:var(--amber-bg);border-radius:12px;padding:10px 14px;margin-top:10px;font-size:14px}
-.tips li{margin:3px 0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-label.f{display:block;font-weight:700;font-size:14px;margin:10px 0 4px}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:26px 20px}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header h1{margin:0;font-size:24px}
+header p{margin:6px 0 0;opacity:.92;font-size:15px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 1px 3px rgba(0,0,0,.04);margin:18px 0}
+label.f{display:block;font-weight:700;font-size:14px;margin:12px 0 4px}
 label.f small{font-weight:400;color:var(--muted)}
 input.t,select.t,textarea.t{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:12px;font-size:16px;font-family:inherit;background:#fff}
 input.t:focus,select.t:focus,textarea.t:focus{outline:0;border-color:var(--blue)}
-textarea.t{min-height:110px}
-.drop{border:2px dashed #93a4c3;border-radius:16px;padding:22px;text-align:center;background:#f8fafc;cursor:pointer;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1.2fr 1fr 2fr;gap:8px}
+@media (max-width:600px){.grid2,.grid3{grid-template-columns:1fr}}
+.preview{background:var(--blue-bg);border-radius:12px;padding:10px 14px;font-family:ui-monospace,Consolas,monospace;font-size:15px;color:var(--blue-d);word-break:break-all;margin-top:10px}
+.drop{border:2px dashed #93a4c3;border-radius:16px;padding:22px;text-align:center;background:#f8fafc;cursor:pointer;color:var(--muted);margin-top:8px}
 .drop.over{background:var(--blue-bg);border-color:var(--blue)}
-.files{list-style:none;padding:0;margin:8px 0 0}
-.files li{display:flex;gap:8px;align-items:center;padding:6px 10px;background:#fff;border:1px solid var(--line);border-radius:10px;margin-top:6px;font-size:14px}
-.files li .x{margin-left:auto;background:none;border:0;color:var(--red);cursor:pointer;font-size:16px}
-.result{background:var(--green-bg);border:2px solid #86efac;border-radius:16px;padding:18px;text-align:center}
-.result b{font-size:28px;color:var(--green);display:block}
+.drop.has{border-style:solid;border-color:var(--green);background:var(--green-bg);color:var(--green);font-weight:700}
+.btn{display:inline-block;padding:13px 24px;border-radius:12px;background:var(--blue);color:#fff;font-weight:800;font-size:17px;border:0;cursor:pointer;font-family:inherit;width:100%;margin-top:16px}
+.btn:disabled{opacity:.5;cursor:default}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:10px;display:none}
+.bar i{display:block;height:100%;width:0;background:var(--blue);transition:width .3s}
+.result{background:var(--green-bg);border:2px solid #86efac;border-radius:16px;padding:18px;text-align:center;margin-top:14px}
+.result b{font-size:26px;color:var(--green);display:block}
 .err{background:var(--red-bg);border-radius:12px;padding:10px 14px;color:var(--red);font-weight:700;margin-top:10px}
-.types{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
-.type{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px}
-.type h3{margin:0 0 8px;font-size:19px}.type h3 .ico{font-size:26px;margin-right:6px}
-.type h4{margin:10px 0 4px;font-size:14px;color:var(--muted)}
-.type .chk li{padding:4px 0}.type .chk li:before{content:"☐";color:#9ca3af}
-.forms a{display:inline-block;background:var(--blue-bg);color:var(--blue-d);padding:5px 10px;border-radius:8px;font-size:13px;text-decoration:none;margin:4px 4px 0 0;font-weight:700}
-.rules{background:var(--amber-bg);border-radius:14px;padding:14px 18px}.rules li{margin:6px 0}
-.q{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 18px;margin-bottom:10px}
-.q summary{font-weight:800;cursor:pointer;padding:10px 0}
-table{width:100%;border-collapse:collapse;font-size:14px;background:#fff}
-th,td{border:1px solid var(--line);padding:7px 8px;text-align:center}
-th{background:#f1f5f9}
-.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#eef1f5}
-.pill.접수{background:var(--red-bg);color:var(--red)}.pill.처리중{background:var(--amber-bg);color:var(--amber)}.pill.보완요청{background:#f1ebfd;color:#6d28d9}.pill.완료{background:var(--green-bg);color:var(--green)}
-.search{width:100%;padding:12px 14px;border:2px solid var(--line);border-radius:12px;font-size:16px;margin:8px 0 14px;font-family:inherit}
-footer{margin:40px 0 30px;color:var(--muted);font-size:13px;text-align:center}
-.prog{height:10px;background:#e5e7eb;border-radius:5px;overflow:hidden;margin-top:10px}.prog i{display:block;height:100%;background:var(--blue);width:0;transition:.3s}
-.ck{list-style:none;padding:0;margin:8px 0 0}.ck li{padding:7px 10px;border-radius:10px;margin-top:5px;font-size:14px}
-.ck .err{background:var(--red-bg);color:var(--red);font-weight:700;margin:0}.ck .warn{background:var(--amber-bg);color:var(--amber)}.ck .ok{background:var(--green-bg);color:var(--green)}.ck .info{background:#f1f5f9;color:var(--muted)}
-.ans{border-radius:14px;padding:14px 16px;margin-top:10px;font-size:15px}.ans.good{background:var(--green-bg);border:2px solid #86efac}.ans.need{background:var(--amber-bg);border:2px solid #fcd34d}
-
-/* ===== 2026-10-22 서류 누락 방지 화면 ===== */
-.fstep[hidden]{display:none}
-.lead{margin:0 0 10px;color:var(--muted);font-size:14px}
-.needsum{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
-.needsum span{padding:6px 12px;border-radius:999px;font-weight:800;font-size:14px}
-.badge{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap;vertical-align:middle}
-.badge.req{background:var(--red);color:#fff}.badge.opt{background:#e5e7eb;color:#374151}.badge.inp{background:var(--blue-bg);color:var(--blue-d)}
-.stagebox{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}
-.stagebox button{flex:1;min-width:180px;padding:12px;border-radius:12px;border:2px solid var(--line);background:#fff;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit}
-.stagebox button.on{border-color:var(--blue);background:var(--blue-bg);color:var(--blue-d)}
-.slots{display:grid;gap:10px}
-.slot{border:2px solid var(--line);border-radius:16px;padding:12px 14px;background:#fff;transition:border-color .2s,background .2s}
-.slot.s-miss{border-color:#fca5a5;background:#fff8f7}.slot.s-ok{border-color:#86efac;background:#f6fdf8}.slot.s-skip{border-color:var(--line);background:#fafafa;opacity:.85}
-.slot.over{border-color:var(--blue);background:var(--blue-bg)}
-.slot.flash{animation:flash 1.2s 2}
-@keyframes flash{50%{box-shadow:0 0 0 5px rgba(217,48,37,.35)}}
-.slot .sh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.slot .sh b{font-size:16px}
-.slot .st{margin-left:auto;font-weight:800;font-size:14px;white-space:nowrap}
-.slot.s-miss .st{color:var(--red)}.slot.s-ok .st{color:var(--green)}.slot.s-skip .st{color:var(--muted)}
-.slot .sub{font-size:13px;color:var(--muted);margin:4px 0 8px}
-.slot .sbtn{display:flex;gap:6px;flex-wrap:wrap}
-.slot .alt{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px;font-size:14px}
-.slot .alt label{display:flex;gap:6px;align-items:center;cursor:pointer}
-.slot .alt input{width:18px;height:18px}
-.slot .inpnote{font-size:14px;background:var(--blue-bg);border-radius:10px;padding:8px 12px}
-.files li.warnf{border-color:#fcd34d;background:var(--amber-bg)}
-.files li .wn{color:var(--amber);font-size:12px}
-.phototip{margin-top:12px;font-size:14px;background:#f1f5f9;border-radius:12px;padding:10px 14px}
-.phototip summary{cursor:pointer;font-weight:800}
-.review{border-radius:16px;border:2px solid var(--line);padding:14px 16px;background:#fff}
-.review h4{margin:12px 0 6px;font-size:15px}.review h4:first-child{margin-top:0}
-.rv{list-style:none;padding:0;margin:0}
-.rv li{padding:6px 10px;border-radius:10px;margin-top:4px;font-size:14px;display:flex;gap:8px;align-items:flex-start}
-.rv li.ok{background:var(--green-bg);color:var(--green)}.rv li.miss{background:var(--red-bg);color:var(--red);font-weight:700}.rv li.skip{background:#f1f5f9;color:var(--muted)}.rv li.warn{background:var(--amber-bg);color:var(--amber)}
-.rv li a{margin-left:auto;color:inherit;font-weight:800;white-space:nowrap}
-.wait{border:3px solid #f59e0b;background:#fffbeb;border-radius:16px;padding:14px 16px;margin-top:12px}
-.wait h4{margin:0 0 6px;font-size:18px}
-.wait label{display:flex;gap:10px;align-items:flex-start;padding:8px 4px;border-bottom:1px dashed #fcd34d;font-size:15px;cursor:pointer}
-.wait label:last-child{border-bottom:0}
-.wait input{width:22px;height:22px;flex:none;margin-top:1px}
-.ack{margin-top:10px;font-size:14px;display:flex;gap:8px;align-items:flex-start;background:var(--red-bg);border-radius:12px;padding:10px 12px;color:var(--red);font-weight:700}
-.ack input{width:20px;height:20px;flex:none}
-.why{margin-top:8px;font-size:14px;color:var(--red);font-weight:700}
-input.t.bad,select.t.bad,textarea.t.bad{border-color:var(--red);background:#fff8f7}
-.fmsg{color:var(--red);font-size:13px;font-weight:700;margin-top:3px;min-height:0}
-.floatbar{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:30;background:#111827;color:#fff;border-radius:999px;padding:10px 12px 10px 18px;display:flex;gap:10px;align-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25);font-size:14px;max-width:calc(100% - 24px)}
-.floatbar[hidden]{display:none}
-.floatbar .fb{white-space:nowrap}.floatbar .fb b{color:#fca5a5}.floatbar .fb.okk b{color:#86efac}
-.floatbar button{background:#fff;color:#111827;border:0;border-radius:999px;padding:7px 12px;font-weight:800;cursor:pointer;font-family:inherit;white-space:nowrap}
-.draftnote{font-size:13px;color:var(--muted);margin-top:6px}
-.btn.off{opacity:.45}
-@media (pointer:coarse){.slot .sbtn small{display:none}}
-.type .chk li:before{content:none}
-.fstep{scroll-margin-top:70px}
-body{padding-bottom:80px}
-.paperlist{text-align:left;display:inline-block;margin:6px 0 0;padding-left:20px}
-@media (max-width:700px){.quick{position:static}.quick .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;overflow:visible;padding:8px 10px}.quick a{white-space:normal;word-break:keep-all;text-align:center;padding:6px 2px;font-size:12px;line-height:1.25;border-radius:10px;background:#f1f5f9}.quick a .ni{display:block;font-size:20px;line-height:1.2}.fstep,h2{scroll-margin-top:12px}.typegrid{grid-template-columns:repeat(3,1fr);gap:6px}.typegrid button{padding:8px 4px;font-size:13px}.typegrid button .i{font-size:22px}.floatbar{bottom:8px;font-size:13px;padding:8px 8px 8px 14px}.floatbar .fb.hm{display:none}.slot .st{margin-left:0;width:100%}.steps{grid-template-columns:1fr}header h1{font-size:24px}.grid2{grid-template-columns:1fr}.card{padding:16px}}
-.optbox{margin-top:14px;border:1px dashed var(--line);border-radius:14px;padding:10px 14px;background:#fcfcfd}.optbox>summary{cursor:pointer;font-size:15px}.optbox>summary small{color:var(--muted);font-weight:400}
+.help{font-size:13.5px;color:var(--muted);margin:0}
+.help li{margin:2px 0}
+footer{color:var(--muted);font-size:13px;text-align:center;padding:16px}
+footer a{color:var(--blue-d)}
+.hint{font-size:13px;color:var(--muted);margin-top:4px}
 </style>
 </head>
 <body>
 <header><div class="wrap">
-  <h1>🧾 연구비 처리 접수</h1>
-  <p id="deptLine"></p>
+  <h1>연구비 증빙 올리기</h1>
+  <p>환경·에너지공학과 연구비 담당 선생님용 — 검토 끝난 증빙을 PDF 한 개로 묶어 올리면 ZEUS 지급신청으로 이어집니다.</p>
 </div></header>
-<nav class="quick"><div class="wrap">
-  <a href="#request"><span class="ni">📤</span> 요청 올리기</a><a href="#status"><span class="ni">🔎</span> 내 요청 조회</a><a href="#docs"><span class="ni">📂</span> 비목별 준비물</a><a href="#rules"><span class="ni">🚫</span> 규칙</a><a href="#trip"><span class="ni">🚆</span> 출장 정액표</a><a href="#faq"><span class="ni">❓</span> FAQ</a><a href="#contact"><span class="ni">📞</span> 담당자</a>
-</div></nav>
 
 <div class="wrap">
-  <div class="steps">
-    <div><b class="e">1️⃣</b>비목을 고르면 <b>꼭 내야 할 서류</b>가 칸으로 나옵니다</div>
-    <div><b class="e">2️⃣</b>서류마다 <b>사진·파일을 하나씩</b> 올리고, <b>보내기 전 점검표</b>를 확인합니다</div>
-    <div><b class="e">3️⃣</b><b>접수번호</b>를 받고, 종이 원본은 <span id="roomLine"></span>로</div>
-  </div>
-
-  <!-- ===== 요청 올리기 ===== -->
-  <h2 id="request">📤 요청 올리기</h2>
-  <div class="card" id="formCard">
-    <div class="fstep" style="border-top:0;padding-top:0"><h3><span class="stepno">1</span>어떤 비목인가요?</h3><div class="typegrid" id="typeGrid"></div></div>
-    <div class="fstep" id="docStep" hidden><h3><span class="stepno">2</span>먼저 읽어 주세요</h3>
-      <div class="needsum" id="needSum"></div>
-      <div id="stageWrap" hidden><b>국외출장 — 지금 어느 단계인가요?</b> <small style="color:var(--muted)">단계마다 내는 서류가 다릅니다</small><div class="stagebox"><button type="button" data-stage="출장 가기 전(신청)">🛫 출장 가기 전 (신청)</button><button type="button" data-stage="귀국 후(정산)">🛬 귀국 후 (정산)</button></div></div>
-      <div class="tips" id="tipBox"></div><div class="forms" id="formLinks" style="margin-top:8px"></div></div>
-    <div class="fstep" id="fileStep" hidden><h3><span class="stepno">3</span>서류를 하나씩 올려 주세요 <small style="font-weight:400;color:var(--muted)">(필수 서류만 있으면 됩니다)</small></h3>
-      <p class="lead">칸마다 그 서류의 사진이나 파일을 올리면 <b style="color:var(--green)">✅</b>로 바뀝니다. <span class="badge req">필수</span> 칸이 비어 있으면 처리가 늦어져요. 여러 서류를 한 PDF로 스캔했다면 '다른 파일에 함께 들어 있어요'에 체크하세요.</p>
-      <div class="slots" id="slots"></div>
-      <input type="file" id="fileInput" multiple accept="image/*,.pdf,.hwp,.hwpx,.xlsx,.docx" style="display:none">
-      <details class="phototip"><summary>📷 사진 잘 찍는 법 (보완요청 줄이기)</summary><ul style="margin:6px 0 0;padding-left:20px">
-        <li>종이를 평평하게 펴고, <b>네 모서리가 다 보이게</b> 찍어 주세요.</li><li><b>서류 한 장에 사진 한 장.</b> 글자·금액·서명·날짜가 읽혀야 합니다.</li>
-        <li>하이라이트가 필요한 서류(학회 안내문, 사사표기 등)는 <b>형광펜 표시가 보이게</b> 찍어 주세요.</li><li>그림자·빛 반사가 있으면 다시 찍어 주세요. 파일은 한 개 20MB까지예요.</li></ul></details>
-    </div>
-    <div class="fstep" id="infoStep" hidden><h3><span class="stepno">4</span>보내는 사람 <small style="font-weight:400;color:var(--muted)">(* 3칸만 꼭 적기 — 이 기기에 기억돼요)</small></h3>
-      <div class="grid2">
-        <div><label class="f" for="pi">교수님(연구실) *</label><select class="t" id="pi" data-req="교수님"></select><div class="fmsg"></div></div>
-        <div><label class="f" for="name">요청자 이름·신분 * <small>예) 홍길동(박사과정)</small></label><input class="t" id="name" data-req="이름" placeholder="홍길동(박사과정)" autocomplete="name"><div class="fmsg"></div></div>
-        <div><label class="f" for="email">이메일 * <small>처리 결과를 보내드립니다</small></label><input class="t" id="email" data-req="이메일" type="email" placeholder="xxx@gm.gist.ac.kr" autocomplete="email"><div class="fmsg"></div></div>
-      </div>
-      <details class="optbox" id="optBox"><summary>✏️ <b>알면 적어 주세요</b> <small>(선택 — 서류만 올려도 담당자가 읽어서 처리해요. 적어 주면 더 빠르고 정확해요)</small></summary>
-      <div class="grid2" style="margin-top:10px">
-        <div><label class="f" for="project">과제명 또는 계정코드 <small id="projectHint">모르면 비워 두세요</small></label><input class="t" id="project" placeholder="예) NN45900 또는 넷제로 과제"><div class="fmsg"></div></div>
-        <div><label class="f" for="amount">금액(원) <small id="amountHint">카드 결제 금액, 여러 건이면 합계</small></label><input class="t" id="amount" inputmode="numeric" placeholder="예) 350,000"><div class="fmsg"></div></div>
-        <div><label class="f" for="payment">결제 수단</label><select class="t" id="payment"><option>연구비카드</option><option>법인카드</option><option>세금계산서(계좌이체)</option><option>아직 결제 안 함(문의)</option></select></div>
-      </div>
-      <label class="f" for="desc">하고 싶은 말 <small>무엇을, 언제, 왜. 급한 이유 등</small></label><textarea class="t" id="desc" placeholder="비워 두어도 됩니다"></textarea><div class="fmsg"></div>
-      <label class="f"><input type="checkbox" id="urgent"> 급합니다 (이유를 위에 적어 주세요)</label>
-      <div id="extraWrap" style="display:none;margin-top:14px;padding:12px 14px;background:#f8fafc;border-radius:14px;border:1px solid var(--line)">
-        <b>📋 이 비목 정보</b> <small style="color:var(--muted)">아는 것만 적어 주세요</small>
-        <div class="grid2" id="extraBox"></div><ul class="ck" id="checkBox"></ul></div>
-      </details>
-    </div>
-    <div class="fstep" id="sendStep" hidden><h3><span class="stepno">5</span>보내기 전 점검표</h3>
-      <div class="review" id="review"></div>
-      <div class="wait" id="waitBox"></div>
-      <div id="ackBox"></div>
-      <div id="sendArea" style="margin-top:14px"><button class="btn off" id="sendBtn">📤 요청 보내기</button> <span id="sendNote" style="color:var(--muted);font-size:14px"></span><div class="why" id="why"></div><div class="prog" id="prog" style="display:none"><i></i></div><div id="sendErr"></div></div>
-      <div id="doneArea" style="display:none"></div>
-    </div>
-  </div>
-  <div class="floatbar" id="floatBar" hidden></div>
-
-  <!-- ===== 내 요청 조회 ===== -->
-  <h2 id="status">🔎 내 요청 조회</h2>
   <div class="card">
-    <div class="grid2"><div><label class="f">이메일</label><input class="t" id="qEmail" placeholder="요청할 때 적은 이메일"></div><div><label class="f">또는 접수번호</label><input class="t" id="qId" placeholder="예) R2610-003"></div></div>
-    <div style="margin-top:12px"><button class="btn small" onclick="lookup()">조회</button></div>
-    <div id="qResult" style="margin-top:12px"></div>
+    <label class="f">올리는 분 <small>(담당 선생님 성함)</small></label>
+    <div class="grid2">
+      <input class="t" id="name" placeholder="예) 조다솜" autocomplete="name">
+      <input class="t" id="email" type="email" placeholder="이메일 (처리 결과 알림, 선택)">
+    </div>
+
+    <label class="f">교수님</label>
+    <select class="t" id="pi"></select>
+
+    <label class="f">계정 · 세목 · 내용 <small>(파일 이름이 됩니다)</small></label>
+    <div class="grid3">
+      <select class="t" id="acct"></select>
+      <select class="t" id="sb"></select>
+      <input class="t" id="desc" placeholder="내용 예) 재료비 켐리시스 / 분석료 5건" maxlength="60">
+    </div>
+    <div class="hint">목록에 없는 계정이면 '직접 입력'을 고르고 적어 주세요.</div>
+    <input class="t" id="acctFree" placeholder="계정코드 직접 입력 (예: N48480)" style="display:none;margin-top:6px" maxlength="8">
+    <div class="preview" id="preview">계정-세목-내용.pdf</div>
+
+    <div class="grid2">
+      <div><label class="f">금액 <small>(원, 선택)</small></label><input class="t" id="amount" inputmode="numeric" placeholder="예) 486500"></div>
+      <div><label class="f">결제·처리 방식</label>
+        <select class="t" id="payment">
+          <option>세금계산서(직접구매)</option><option>연구비카드</option><option>법인카드</option><option>분석료 대체(중앙기기연구소)</option><option>출장비</option><option>기타</option>
+        </select></div>
+    </div>
+
+    <label class="f">증빙 PDF <small>(검토 끝난 서류를 한 파일로, 20MB 이하)</small></label>
+    <div class="drop" id="drop">여기에 PDF를 끌어다 놓거나 눌러서 고르세요</div>
+    <input type="file" id="fi" accept="application/pdf,.pdf" hidden>
+
+    <label class="f">담당자 메모 <small>(선택)</small></label>
+    <textarea class="t" id="memo" style="min-height:70px" placeholder="예) 켐리시스 건은 I10600으로. 청구서 5건 합계 260,400원."></textarea>
+
+    <button class="btn" id="send">접수함에 올리기</button>
+    <div class="bar" id="bar"><i></i></div>
+    <div id="out"></div>
   </div>
 
-  <!-- ===== 비목별 준비물 ===== -->
-  <h2 id="docs">📂 비목별 준비물</h2>
-  <input class="search" id="q" placeholder="찾기: 출장, 시약, 학회, 회의…" oninput="filter(this.value)">
-  <div class="types" id="types"></div>
-
-  <h2 id="rules">🚫 꼭 지켜 주세요</h2>
-  <ul class="rules" id="rulesList"></ul>
-
-  <h2 id="trip">🚆 국내출장 정액표 (1일당, 원)</h2>
-  <table><tr><th>구분</th><th>철도</th><th>일비</th><th>숙박료</th><th>식비</th></tr>
-    <tr><td>교수·수석급·부교수·책임급</td><td>KTX 특실(1등급)</td><td>30,000</td><td>90,000</td><td>28,000</td></tr>
-    <tr><td>조교수·전임강사·선임급</td><td>KTX 일반실(2등급)</td><td>30,000</td><td>70,000</td><td>25,000</td></tr>
-    <tr><td>원급 이하(학생)</td><td>KTX 일반실(2등급)</td><td>30,000</td><td>70,000</td><td>22,000</td></tr></table>
-  <p style="font-size:13px;color:var(--muted)">자동차 운임 실비: 주유비 = 거리 ÷ 연비 × 유가. 거리는 최단거리 기준. 출발지는 소속기관 지역.</p>
-
-  <h2 id="faq">❓ 자주 묻는 질문</h2>
-  <details class="q"><summary>개인카드로 먼저 결제했는데 돌려받을 수 있나요?</summary><p>원칙적으로 <b>안 됩니다.</b> 연구비카드·법인카드로만 결제합니다. 예외는 국내출장 현지 결제, 국외출장 식비·숙박비(개인카드, 출장 후 10일 이내 제출)뿐입니다. 항공료·여행자보험은 반드시 연구비카드입니다.</p></details>
-  <details class="q"><summary>500만원이 넘는 물건은요?</summary><p>직접구매는 500만원 미만만 가능합니다. 같은 업체에서 2주 안에 산 금액을 합쳐 500만원이 넘으면 처리가 안 됩니다. 큰 금액은 담당자에게 먼저 물어보세요.</p></details>
-  <details class="q"><summary>주문한 사람이 검수(확인 서명)도 해도 되나요?</summary><p>안 됩니다. 주문자와 검수자는 <b>다른 사람</b>이어야 하고, 거래명세서에 2차 검수자(참여연구원)가 서명합니다.</p></details>
-  <details class="q"><summary>출장 다녀온 뒤 언제까지 내야 하나요?</summary><p>국내출장은 <b>3일 이내</b>, 국외출장 개인카드 사용분은 <b>10일 이내</b>입니다.</p></details>
-  <details class="q"><summary>학회 종신회비도 되나요?</summary><p>종신회비는 집행할 수 없습니다. 연회비·등록비만 가능합니다.</p></details>
-  <details class="q"><summary>논문게재료는 누구 논문이면 되나요?</summary><p>과제 참여연구원이 저자 또는 교신저자인 논문만 가능합니다. 사사표기(Acknowledgement)에 과제번호가 있어야 하고, 그 부분을 하이라이트해 주세요.</p></details>
-  <details class="q"><summary>학생인건비는 언제 들어오나요?</summary><p>매월 23일입니다. 3월·9월에 연구실별로 한 학기치 계획을 세워 확약하므로, 중간에 바꾸려면 교수님을 통해 담당자에게 말씀해 주세요.</p></details>
-  <details class="q"><summary>접수했는데 처리가 어디까지 됐나요?</summary><p>위 '내 요청 조회'에 이메일을 넣으면 상태(접수 → 처리중 → 완료, 또는 보완요청)가 보입니다. 상태가 바뀌면 이메일로도 알려드립니다.</p></details>
-
-  <h2 id="contact">📞 담당자</h2>
-  <div class="card" id="contactBox"></div>
-  <footer>기준: 환경·에너지공학과 연구비 인수인계서(2026.8.) · 규정이 바뀌면 이 페이지도 바뀝니다 · <span id="updated"></span></footer>
+  <div class="card">
+    <ul class="help">
+      <li>세목 번호: 261 재료비 · 262 사무용품 · 250 유인물 · 233 분석료(내부) · 223 분석료(외부) · 241 국내여비 · 242 국외여비 · 350 회의비 · 284 학회등록비 · 282 전문가활용 · 420 논문게재·교정 · 375 우편·공공요금 · 611 연구수당</li>
+      <li>부가세 과제(I·C·G 계정)는 세금계산서 공급가액만 적어도 됩니다. 부가세는 ZEUS에서 066026으로 자동 분리합니다.</li>
+      <li>올린 뒤에는 담당(주영현)이 접수함에서 내려받아 "ZEUS 지급신청 처리해줘"로 처리하고, 전자결재만 사람이 합니다.</li>
+    </ul>
+  </div>
+  <footer>환경·에너지공학과 연구비 담당 · 공과대학 교학팀 · <a href="index_v1_학생접수.html">예전 안내·양식 페이지</a></footer>
 </div>
 
-<div id="jsErr" style="display:none;position:fixed;top:0;left:0;right:0;z-index:99;background:#d93025;color:#fff;padding:10px 14px;font-size:14px;font-weight:700"></div>
+<script src="site-config.js"></script>
 <script>
-// 화면이 안 움직일 때 원인을 바로 보이게: 오류가 나면 맨 위 빨간 띠에 표시 (담당자에게 이 글을 알려 주세요)
-window.addEventListener("error",function(e){ var b=document.getElementById("jsErr"); if(!b) return; b.style.display="block"; b.textContent="⚠️ 화면 오류: "+(e.message||"알 수 없음")+" ("+String(e.filename||"").split("/").pop()+":"+(e.lineno||"")+") — 이 문구를 담당자에게 알려 주세요"; });
-</script>
-<script src="site-config.js?v=20261022b"></script>
-<script src="procedures.js?v=20261022b"></script>
-<script src="checks.js?v=20261022b"></script>
-<script>
-const S=window.SITE, GD=window.GD;
+const PROJ=[["NN48480","N48480","주종훈","고가 원소 의존성을 탈피한 저가·고안정성 고체산화물셀 공기극 및 단전지 ","20270831"],["NN48270","N48270","김형록","AI 요소모델(Emulator)-수치예보모델 연계 기반 한국형 위험기상 ","20270831"],["NN48120","N48120","한승희","표층해수 내 용존2가수은의 광환원 기작 연구","20270831"],["NN47800","N47800","주종훈","SOEC 전용 핵심부품 시험 플랫폼 구축 및 신뢰성 평가 연구","20261231"],["NN47620","N47620","황희정","지구-행성 진화 및 핵심 광물 연구를 위한 고온·고압 실시간 극한환경 마","20270228"],["NN47520","N47520","박영준","크러스레이트 하이드레이트의 열역학적 메타 안정성 기반 수소-천연가스 맞춤","20270430"],["NN47390","N47390","최희철","차세대 액상폐기물 무방류 (ZLD) 시스템 구현을 위한 태양광 열에너지 ","20270430"],["NN47240","N47240","주종훈","고체산화물 수전해전지의 내구성 향상을 위한 글로벌 협력 연구 체계 구축","20261231"],["NN46540","N46540","주종훈","[박사과정생_최수민]우수한 성능 및 안정성을 위한 한계 돌파형 고체 산화","20270228"],["NN46340","N46340","송철한","수치모델-인공지능 융합 기반 대기질-재생에너지 통합 예측 시스템 개발","20270228"],["NN46280","N46280","고용석","[박사후국내연수]미생물을 활용한 Bio-Fenton 시스템 구성에 의한 ","20270228"],["NN46190","N46190","주종훈","부하변동 및 역전류 대응형 차세대 알칼라인 수전해 고활성·고내구성·대면적","20261231"],["NN46160","N46160","이재영","차세대 고효율 음이온교환막 수전해 원천기술개발","20261231"],["NN46150","N46150","주종훈","중온형(700℃) 고체산화물수전해 내구성, 효율 향상 및 스케일업을 위한","20261231"],["NN45800","N45800","황희정","다중환경에서의 Ca 인산염 광물의 원자구조 및 물리·화학적 특성 연구: ","20270228"],["NN45710","N45710","장인섭","생전기촉매 기반 바이오케미칼 합성을 위한 다중효소 네트워크 개발","20270228"],["NN45470","N45470","허호길","Bacterial Bio-Fenton 시스템 개발에 의한 난분해성 환경오","20270228"],["NN45410","N45410","김태영","중수 표지법을 활용한 토양 미세플라스틱과 첨가제의 독성오믹스 분석","20270228"],["NN45250","N45250","이재영","화학에너지 저장 및 변환 공정의 미래연구센터 구축","20261231"],["GR08008","R08008","이윤호","[고려대학교 이재상] 외부과제 참여연구원 인건비 계정(이윤호)","20270430"],["GR07859","R07859","송철한","[울산과학기술원 송창근] 외부과제 참여연구원 인건비 계정(송철한)","20261219"],["GM20101","M20101","민경은","[Sub1-주관]관측 기반 VOCs-ROx-NOx 연계 오존 생성 특성 ","20261231"],["GM20080","M20080","김형록","홍수특보지점 확대와 기후위기 대응을 위한 AI-물리기반 하이브리드 홍수예","20261231"],["GM20030","M20030","주종훈","(2/4) 다중스케일 열화 모델 및 AI 기반 수명 예측을 통한고내구성 ","20261231"],["GM19660","M19660","주종훈","국산 지르코니아 소재 및 셀 적용 SOEC 제품 활용기술 개발","20261231"],["GM19590","M19590","박영준","AI-순환경제 클러스터링 특성화대학원 육성사업","20261231"],["GM19410","M19410","민경은","반응성 할로겐 화합물의 북극 대기 산화 영향 연구","20261231"],["GM19150","M19150","박영준","AI-순환경제 클러스터링 특성화대학원 육성사업","20251231"],["GKH1090","KH1090","이재영","AI 동반 수소 생산·활용, 유출평가 기반 탈탄소화 사업","20261231"],["GKH0880","KH0880","김형록","기후변화 대응을 위한 AI 기반 차세대 기후테크: 실시간 자연재해/수질 ","20261231"],["GK01130","K01130","박영준","연구보전비","20270228"],["GI10650","I10650","박영준","﻿리튬 염호 내 알칼리 및 알칼리 토금속 제거를 위한 자연적 온도-스윙 ","20270226"],["GI10610","I10610","박영준","안정도∙용해도 차이를 활용한 킬레이트 선택성 탄소광물화 희토류 금속 분리","20261225"],["GI10600","I10600","박영준","복잡계·저농도 리튬 염호 내 리튬회수를 위한 전기화학적 플랫폼 기반 차세","20261225"],["GI10410","I10410","민경은","반도체 FAB용 VOC 분석기 개발","20270914"],["GG17200","G17200","이재영","지능형 수소기술 혁신연구단(울산과학기술원)","20261231"],["GE13110","E13110","이윤호","[고려대학교 이재상]워터 리파이너리 플랫폼 자동화/모듈화 선도연구센터","20270430"],["GE13090","E13090","이윤호","[군산대학교 신재돈]먹는물 과불화합물 총량 및 구성성분 분석 기술개발","20261231"],["GE13080","E13080","송철한","[울산과학기술원 송창근] 4단계('26~'28) 한중 대기질 공동연구(Ⅰ","20261219"],["GE13040","E13040","송철한","[국립목포대학교 송명기] 전남 중서부 지역 대기오염물질 특성 진단 및 배","20281231"],["GC00630","C00630","한승희","안동호 상류 어류의 수은 발생 근원조사 연구","20271207"],["GC00620","C00620","한승희","2026년 국가 수은통합측정망 운영사업","20261224"],["GC00610","C00610","강창근","여자만 및 진해만 남부 어장수용력 산정인자 조사(Ⅱ) 및 수용력 산정","20261130"],["GC00570","C00570","강창근","패류 양식어장 경쟁생물 저감 및 어장환경 개선방안 연구","20261130"],["GC00540","C00540","강창근","만호해역 김 양식장 어장수용력 산정","20261130"],["GC00520","C00520","민경은","대기중 산화제 반응성에 기반한 지역별 오존 생성 특성 및 민감도 평가 연","20261224"]];
+const SB=[["261","재료비"],["262","사무용품"],["250","유인물"],["233","분석료(내부)"],["223","분석료(외부)"],["241","국내여비"],["242","국외여비"],["350","회의비"],["345","야근식대"],["284","학회등록비"],["282","전문가활용"],["420","논문게재·교정"],["375","우편·공공요금"],["290","교육훈련비"],["437","소프트웨어"],["191","연구기자재"],["192","공기구비품"],["172","외부인건비"],["611","연구수당"],["613","학생인건비"]];
 const $=id=>document.getElementById(id);
-const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-$("deptLine").textContent=S.officeName.includes(S.deptName)?S.officeName:`${S.deptName} · ${S.officeName}`; $("roomLine").textContent=S.officeRoom; $("updated").textContent="최근 갱신 "+S.updated;
-const ok=v=>v&&!/^\[/.test(v);  // [내선 입력] 같은 빈칸은 화면에 안 보이게
-$("contactBox").innerHTML=`<b>${esc(S.officeName)}</b><br>종이 원본 제출: ${esc(S.officeRoom)}${ok(S.officeTel)||ok(S.officeEmail)?"<br>":""}${ok(S.officeTel)?"전화 "+esc(S.officeTel):""}${ok(S.officeTel)&&ok(S.officeEmail)?" · ":""}${ok(S.officeEmail)?`이메일 <a href="mailto:${S.officeEmail}">${esc(S.officeEmail)}</a>`:""}`;
-$("rulesList").innerHTML=GD.commonRules.map(r=>`<li>${esc(r)}</li>`).join("");
-$("pi").innerHTML=`<option value="">선택</option>`+S.professors.map(p=>`<option>${esc(p)}</option>`).join("")+`<option>기타</option>`;
-const formLink=f=>`<a href="${S.formsFolder}${encodeURIComponent(f)}" download>📎 ${esc(f.replace(/^\[붙임\d\]\s*/,""))}</a>`;
-
-// 같은 내용이면 다시 그리지 않음(입력 칸에서 버튼으로 옮겨 누를 때 클릭이 사라지지 않게)
-const setHTML=(el,h)=>{ if(el._h===h) return false; el.innerHTML=h; el._h=h; return true; };
-/* ===== 서류 '꼭 내야 하는지' 읽기 (procedures.js의 GD.docNeed) ===== */
-const NEED_LABEL={필수:["req","필수"],신청:["req","필수"],귀국:["req","필수"],해당시:["opt","해당 시"],"신청·해당시":["opt","해당 시"],"귀국·해당시":["opt","해당 시"],입력:["inp","칸에 적기"],필수또는입력:["req","필수"],조건필수:["req","필수"],입력선택:["opt","알면 적기"],없음:["opt","서류 없음"]};
-function needOf(e,i){ const n=(GD.docNeed&&GD.docNeed[e.id])||[]; const raw=n.length===e.docs.length?n[i]:"필수"; const [kind,keys]=String(raw||"필수").split(":"); return {raw:kind,keys:keys?keys.split(","):[]}; }
-const docName=d=>String(d).replace(/^\[(신청|귀국) 시\]\s*/,"").replace(/^\[국외전문가\]\s*/,"국외전문가: ");
-const shortName=d=>docName(d).split(/\s*[(—]/)[0].replace(/\s+/g," ").trim().slice(0,24);
-const badgeOf=raw=>{ const [c,t]=NEED_LABEL[raw]||NEED_LABEL.필수; return `<span class="badge ${c}">${t}</span>`; };
-
-/* 비목 카드 (아래 '비목별 준비물') */
-$("types").innerHTML=GD.expenseTypes.map(e=>`<div class="type" data-q="${esc(e.name+e.docs.join()+e.tips.join())}">
-  <h3><span class="ico">${e.icon}</span>${esc(e.name)}</h3><h4>준비물</h4><ul class="chk">${e.docs.map((d,i)=>`<li>${badgeOf(needOf(e,i).raw)} ${esc(d)}</li>`).join("")}</ul>
-  ${e.tips.length?`<h4>주의</h4><ul class="tips" style="margin:0;padding:8px 24px">${e.tips.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:""}
-  ${e.form?`<h4>양식</h4><div class="forms">${[e.form,e.form2].filter(Boolean).map(formLink).join("")}</div>`:""}
-  <div style="margin-top:10px"><button class="btn small" onclick="pickType('${e.id}')">이 비목으로 요청하기</button></div></div>`).join("");
-function filter(q){ q=q.trim().toLowerCase(); document.querySelectorAll(".type").forEach(el=>el.style.display=!q||el.dataset.q.toLowerCase().includes(q)?"":"none"); }
-
-/* ===== 접수 폼 ===== */
-// 비목별로 학생이 직접 적어야 하는 정보(파일만으로는 알 수 없는 것)만 남김. stage는 위 단계 버튼이 채움.
-const NEED_FIELDS={"domestic-trip":["tripStart","tripEnd"],"overseas-trip":["stage"],"meeting":["meetDate"],"eqi":["inst","claims"],"refund":["depositDate","depositor","reason","origPps","origTrip"]};
-const MAXF=15, MAXMB=20, TOTALMB=35;
-let curType=null, slots=[], extraSlot=null, lastCheck=[], tried=false, pickTarget=null, confirmState={}, ackLate=false, ackErr=false;
-const PAPERLESS=new Set(["labnote","eqi","refund"]);
-$("typeGrid").innerHTML=GD.expenseTypes.map(e=>`<button type="button" id="tb-${e.id}" data-type="${e.id}"><span class="i">${e.icon}</span>${esc(e.name.split(" (")[0])}</button>`).join("");
-$("typeGrid").addEventListener("click",ev=>{ const btn=ev.target.closest("button[data-type]"); if(btn) pickType(btn.dataset.type); });
-
-// 이 기기에 이름·이메일·교수님 기억 (다음 접수 때 자동 채움)
-const DKEY="rf.me";
-try{ const m=JSON.parse(localStorage.getItem(DKEY)||"{}"); if(m.name) $("name").value=m.name; if(m.email) $("email").value=m.email; if(m.pi) $("pi").value=m.pi; }catch(e){}
-function saveMe(){ try{ localStorage.setItem(DKEY,JSON.stringify({name:$("name").value.trim(),email:$("email").value.trim(),pi:$("pi").value})); }catch(e){} }
-
-function stageNow(){ const el=document.querySelector('[data-x="stage"]'); return el?el.value:""; }
-function setStage(v){ const el=document.querySelector('[data-x="stage"]'); if(el){ el.value=v; } document.querySelectorAll("#stageWrap button").forEach(b=>b.classList.toggle("on",b.dataset.stage===v)); renderSlots(); runCheck(); refresh(); }
-document.querySelectorAll("#stageWrap button").forEach(b=>b.onclick=()=>setStage(b.dataset.stage));
-
-function pickType(id,noScroll){
-  curType=GD.expenseTypes.find(e=>e.id===id); document.querySelectorAll(".typegrid button").forEach(b=>b.classList.toggle("on",b.id==="tb-"+id));
-  // 이미 올린 파일은 '그 밖의 파일'로 옮겨서 잃어버리지 않게
-  const keep=[].concat(...slots.map(s=>s.files),extraSlot?extraSlot.files:[]);
-  slots=curType.docs.map((d,i)=>{ const n=needOf(curType,i); return {i,doc:d,name:docName(d),short:shortName(d),need:n.raw,keys:n.keys,files:[],inOther:false,na:false}; });
-  extraSlot={i:"x",doc:"그 밖의 파일",name:"그 밖의 파일 (사유서, 추가 증빙 등)",short:"기타",need:"extra",keys:[],files:keep,inOther:false,na:false};
-  confirmState={}; ackLate=false; ackErr=false; tried=false;
-  // 2단계: 요약·주의·양식
-  const vis=curType.docs.map((d,i)=>needOf(curType,i).raw);
-  const nReq=vis.filter(r=>/^(필수|신청|귀국)$/.test(r)).length, nOpt=vis.filter(r=>/해당시/.test(r)).length, nInp=vis.filter(r=>/^입력/.test(r)).length;
-  $("needSum").innerHTML=(nReq?`<span style="background:var(--red-bg);color:var(--red)">📌 꼭 내야 할 서류 ${nReq}가지</span>`:"")+(nOpt?`<span style="background:#eef1f5;color:#374151">해당하는 사람만 ${nOpt}가지</span>`:"")+(nInp?`<span style="background:var(--blue-bg);color:var(--blue-d)">✏️ 칸에 적을 것 ${nInp}가지</span>`:"")+(!nReq&&!nOpt&&!nInp?`<span style="background:#eef1f5">올릴 서류가 없어요 — 내용만 적어 주세요</span>`:"");
-  $("tipBox").innerHTML=curType.tips.length?`<b>⚠️ 자주 틀리는 것</b><ul style="margin:4px 0;padding-left:20px">${curType.tips.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`:"";
-  $("tipBox").style.display=curType.tips.length?"":"none";
-  $("formLinks").innerHTML=curType.form?"📥 GIST 양식 먼저 내려받기: "+[curType.form,curType.form2].filter(Boolean).map(formLink).join(""):"";
-  ["docStep","infoStep","fileStep","sendStep"].forEach(s=>$(s).hidden=false);
-  $("stageWrap").hidden=curType.id!=="overseas-trip";
-  // 금액이 없는 요청(연구노트 등)
-  $("amount").closest("div").style.display=curType.noAmount?"none":""; $("payment").closest("div").style.display=(curType.noAmount||curType.noPayment)?"none":""; $("amountHint").textContent=curType.amountHint||"카드 결제 금액, 여러 건이면 합계";
-  const projReq=slots.some(s=>s.keys.includes("project"));
-  $("project").dataset.req=projReq?"과제/계정":""; $("projectHint").textContent=projReq?"* 대체할 연구계정(과제번호)을 꼭 적어 주세요":"모르면 비워 두세요";
-  // 비목별 추가 칸 + 자동검사
-  // 서류 날짜·금액 같은 확인은 담당자 화면이 올린 파일을 읽어 자동으로 합니다. 여기서는 파일로 알 수 없는 정보만 받습니다.
-  const F=((window.GDCHECK&&GDCHECK.FIELDS[curType.id])||[]); // 이 비목 정보는 모두 '알면 적기'(선택)
-  $("extraWrap").style.display=F.filter(f=>f.k!=="stage").length?"":"none";
-  $("extraBox").innerHTML=F.map(f=>`<div${f.k==="stage"?' hidden':""}${f.type==="textarea"?' style="grid-column:1/-1"':""}><label class="f">${esc(f.label)}</label>${f.type==="textarea"?`<textarea class="t" data-x="${f.k}" rows="4" placeholder="${esc(f.ph||"")}"></textarea>`:f.type==="select"?`<select class="t" data-x="${f.k}"><option value="">선택</option>${f.options.map(o=>`<option>${esc(o)}</option>`).join("")}</select>`:`<input class="t" data-x="${f.k}" type="${f.type}" ${f.type==="number"?'inputmode="numeric" min="0"':""} placeholder="${esc(f.ph||"")}">`}</div>`).join("");
-  const st=document.querySelector('[data-x="stage"]'); if(st) st.addEventListener("change",()=>setStage(st.value));
-  $("optBox").open=slots.some(s=>/입력/.test(s.need));
-  document.querySelectorAll("#stageWrap button").forEach(b=>b.classList.remove("on"));
-  $("sendNote").textContent=S.apiUrl?"":"(접수 서버가 아직 연결되지 않아 메일 보내기 창이 열립니다. 파일은 메일에 직접 첨부해 주세요)";
-  $("doneArea").style.display="none"; $("sendArea").style.display="";
-  renderSlots(); runCheck(); markFields(); refresh();
-  // 휴대폰에서는 비목 버튼 아래로 화면이 길어서, 고른 뒤 다음 단계로 자동으로 내려 줍니다
-  if(!noScroll) setTimeout(()=>$("docStep").scrollIntoView({behavior:"smooth",block:"start"}),60);
-}
-function extraVals(){ const o={}; document.querySelectorAll("[data-x]").forEach(el=>{ if(el.value!=="") o[el.dataset.x]=el.value; }); return o; }
-const todayS=()=>{ const t=new Date(); return t.getFullYear()+"-"+String(t.getMonth()+1).padStart(2,"0")+"-"+String(t.getDate()).padStart(2,"0"); };
-function runCheck(){
-  if(!curType||!window.GDCHECK){ lastCheck=[]; return; }
-  lastCheck=GDCHECK.run(curType.id, extraVals(), {amount:$("amount").value, payment:$("payment").value, submitDate:todayS()});
-  lastCheck=lastCheck.filter(r=>r.lv==="err"||r.lv==="warn");
-  $("checkBox").innerHTML=lastCheck.map(r=>`<li class="${r.lv}">${{err:"❌",warn:"⚠️",ok:"✅",info:"💡"}[r.lv]} ${esc(r.msg)}</li>`).join("");
-}
-$("infoStep").addEventListener("input",()=>{ fmtAmount(); runCheck(); if(tried) markFields(); renderSlots(); refresh(); });
-$("infoStep").addEventListener("change",()=>{ runCheck(); markFields(); saveMe(); renderSlots(); refresh(); });
-$("infoStep").addEventListener("focusout",e=>{ if(e.target.matches("[data-req]")) markField(e.target,true); saveMe(); });
-function fmtAmount(){ const el=$("amount"); const d=el.value.replace(/[^\d]/g,""); const f=d?Number(d).toLocaleString("ko-KR"):""; if(el.value!==f){ el.value=f; } }
-
-/* --- 칸별 빨간 표시 --- */
-function fieldProblem(el){
-  if(!el.dataset.req || el.closest("div").style.display==="none") return "";
-  const v=el.value.trim();
-  if(!v) return el.tagName==="SELECT"?`${el.dataset.req}을(를) 골라 주세요`:`${el.dataset.req}을(를) 적어 주세요`;
-  if(el.id==="email"&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) return "이메일 모양이 맞지 않아요 (예: xxx@gm.gist.ac.kr)";
-  if(el.id==="amount"&&!(Number(v.replace(/[^\d]/g,""))>0)) return "금액을 숫자로 적어 주세요";
-  if(el.id==="desc"&&v.length<5) return "조금만 더 자세히 적어 주세요 (무엇을, 언제, 왜)";
-  return "";
-}
-function markField(el,show){ const p=fieldProblem(el); const m=el.nextElementSibling; el.classList.toggle("bad",!!p&&show); if(m&&m.classList&&m.classList.contains("fmsg")) m.textContent=show&&p?"✋ "+p:""; return p; }
-function markFields(){ document.querySelectorAll("#infoStep [data-req]").forEach(el=>{ const show=tried||el.value.trim()!==""; markField(el,show); }); }
-function missingFields(){ return [...document.querySelectorAll("#infoStep [data-req]")].map(el=>({el,p:fieldProblem(el)})).filter(x=>x.p); }
-
-/* --- 서류 칸 --- */
-function visibleSlots(){
-  if(!curType) return [];
-  const st=stageNow();
-  return slots.filter(s=>{ if(s.need==="없음") return false;
-    if(s.need==="조건필수"){ const [k,v]=String(s.keys[0]||"").split("="); return extraVals()[k]===v; }
-    if(/^신청/.test(s.need)) return st==="출장 가기 전(신청)"; if(/^귀국/.test(s.need)) return st==="귀국 후(정산)"; return true; });
-}
-function slotState(s){
-  if(s.need==="extra") return s.files.length?"ok":"skip";
-  if(s.need==="입력"){ const ok=s.keys.every(k=>k==="project"?$("project").value.trim():extraVals()[k]); return ok?"ok":"miss"; }
-  if(s.need==="입력선택") return "skip";
-  if(s.need==="필수또는입력"&&s.keys.every(k=>String(extraVals()[k]||"").trim())) return "ok";
-  if(s.files.length||s.inOther) return "ok";
-  if(/해당시/.test(s.need)) return s.na?"skip":"miss";
-  return "miss";
-}
-const fieldLabel=k=>{ if(k==="project") return "과제명 또는 계정코드"; const f=((window.GDCHECK&&GDCHECK.FIELDS[curType.id])||[]).find(x=>x.k===k); return f?f.label:k; };
-function slotHtml(s){
-  const st=slotState(s), id="slot-"+s.i;
-  const stTxt={ok:"✅ 준비됨",miss:/해당시/.test(s.need)?"⭕ 올리거나 '해당 없어요'":"⭕ 아직 없어요",skip:s.need==="입력선택"?"선택":s.need==="extra"?"선택":"➖ 해당 없음"}[st];
-  const badge=s.need==="extra"?`<span class="badge opt">선택</span>`:badgeOf(s.need);
-  let body="";
-  if(/^입력/.test(s.need)){
-    const got=s.keys.map(k=>{ const v=k==="project"?$("project").value.trim():extraVals()[k]; return `${esc(fieldLabel(k))}: ${v?`<b>${esc(v)}</b>`:"<i>빈칸</i>"}`; }).join(" · ");
-    body=`<div class="inpnote">✏️ 파일 대신 위 3단계 칸에 적으면 됩니다 — ${got} <a href="#" onclick="goField('${s.keys[0]}');return false">칸으로 가기</a></div>`;
-  } else {
-    body=`<div class="sbtn"><button type="button" class="btn small" onclick="pickFor('${s.i}',false)">📎 파일 올리기</button><button type="button" class="btn small sec" onclick="pickFor('${s.i}',true)">📷 사진 찍기</button><small style="align-self:center;color:var(--muted)">또는 이 칸에 끌어다 놓기</small></div>
-      <ul class="files">${s.files.map((f,j)=>`<li class="${f._small?"warnf":""}">📄 ${esc(f.name)} <small style="color:var(--muted)">${(f.size/1024/1024).toFixed(1)}MB</small>${f._small?` <span class="wn">⚠️ 사진이 작아 글씨가 안 보일 수 있어요</span>`:""}<button type="button" class="x" title="빼기" onclick="removeFile('${s.i}',${j})">✕</button></li>`).join("")}</ul>
-      ${s.need==="필수또는입력"?`<div class="inpnote">✏️ 파일이 없으면 4단계 '알면 적어 주세요'의 <a href="#" onclick="$('optBox').open=true;goField('${s.keys[0]}');return false">${esc(fieldLabel(s.keys[0]))}</a> 칸에 적어도 돼요${String(extraVals()[s.keys[0]]||"").trim()?" — <b>칸에 적음 ✅</b>":""}</div>`:""}
-      ${s.need==="extra"?"":`<div class="alt">${/해당시/.test(s.need)?`<label><input type="checkbox" ${s.na?"checked":""} onchange="setFlag('${s.i}','na',this.checked)"> 저는 해당 없어요</label>`:""}${!s.files.length?`<label><input type="checkbox" ${s.inOther?"checked":""} onchange="setFlag('${s.i}','inOther',this.checked)"> 다른 파일에 함께 들어 있어요</label>`:""}</div>`}`;
-  }
-  return `<div class="slot s-${st}" id="${id}" data-slot="${s.i}"><div class="sh">${badge}<b>${esc(s.need==="extra"?s.name:s.short)}</b><span class="st">${stTxt}</span></div>${s.need==="extra"||s.short===s.name?"":`<div class="sub">${esc(s.name)}</div>`}${body}</div>`;
-}
-function renderSlots(){
-  if(!curType) return;
-  const vs=visibleSlots();
-  let head="";
-  if(curType.id==="overseas-trip"&&!stageNow()) head=`<div class="slot s-miss"><b>👆 2단계에서 '출장 가기 전 / 귀국 후'를 먼저 골라 주세요.</b> 단계에 맞는 서류 칸이 나타납니다.</div>`;
-  if(curType.id==="labnote") head=`<div class="slot s-skip">📓 연구노트는 올릴 서류가 없어요. 3단계 '내용'에 발급이면 과제명·받을 사람, 반납이면 반납할 연구노트 정보를 적어 주세요.</div>`;
-  if(!setHTML($("slots"),head+vs.map(slotHtml).join("")+slotHtml(extraSlot))) return;
-  document.querySelectorAll("#slots [data-slot]").forEach(el=>{ const s=slotBy(el.dataset.slot); if(!s||/^입력/.test(s.need)) return;
-    el.ondragover=e=>{e.preventDefault();el.classList.add("over")}; el.ondragleave=()=>el.classList.remove("over");
-    el.ondrop=e=>{e.preventDefault();el.classList.remove("over");addFilesTo(s,e.dataTransfer.files)}; });
-}
-const slotBy=i=>i==="x"?extraSlot:slots.find(s=>String(s.i)===String(i));
-function setFlag(i,k,v){ const s=slotBy(i); s[k]=v; renderSlots(); refresh(); }
-function goField(k){ $("optBox").open=true; const el=k==="project"?$("project"):document.querySelector(`[data-x="${k}"]`); if(el){ el.scrollIntoView({behavior:"smooth",block:"center"}); setTimeout(()=>el.focus(),400); } }
-const fi=$("fileInput");
-function pickFor(i,camera){ pickTarget=slotBy(i); if(camera){ fi.setAttribute("accept","image/*"); fi.setAttribute("capture","environment"); fi.multiple=false; } else { fi.setAttribute("accept","image/*,.pdf,.hwp,.hwpx,.xlsx,.docx"); fi.removeAttribute("capture"); fi.multiple=true; } fi.click(); }
-fi.onchange=()=>{ if(pickTarget) addFilesTo(pickTarget,fi.files); fi.value=""; };
-const allFiles=()=>[].concat(...slots.map(s=>s.files),extraSlot?extraSlot.files:[]);
-function addFilesTo(s,list){
-  const msgs=[];
-  for(const f of list){
-    const all=allFiles();
-    if(all.length>=MAXF){ msgs.push(`파일은 모두 ${MAXF}개까지 올릴 수 있어요. 여러 장은 PDF 하나로 묶어 주세요.`); break; }
-    if(f.size>MAXMB*1024*1024){ msgs.push(`${f.name}: ${MAXMB}MB를 넘어 올릴 수 없어요 (사진은 자동으로 줄여 드리지만 PDF는 줄여서 올려 주세요)`); continue; }
-    if(all.some(g=>g.name===f.name&&g.size===f.size)){ msgs.push(`${f.name}: 이미 올린 파일이에요 (같은 파일을 두 칸에 올렸는지 확인해 주세요)`); continue; }
-    s.files.push(f); s.inOther=false; s.na=false;
-    if(f.type.startsWith("image/")){ const img=new Image(); img.onload=()=>{ if(Math.min(img.width,img.height)<700){ f._small=true; renderSlots(); } URL.revokeObjectURL(img.src); }; img.src=URL.createObjectURL(f); }
-  }
-  const tot=allFiles().filter(f=>!f.type.startsWith("image/")).reduce((a,f)=>a+f.size,0);
-  if(tot>TOTALMB*1024*1024) msgs.push(`사진이 아닌 파일이 모두 ${(tot/1048576).toFixed(0)}MB예요. ${TOTALMB}MB를 넘으면 보내다 실패할 수 있어요.`);
-  if(msgs.length) alert(msgs.join("\n"));
-  renderSlots(); refresh();
-}
-function removeFile(i,j){ const s=slotBy(i); s.files.splice(j,1); renderSlots(); refresh(); }
-
-/* --- 잠깐! 이거 하셨나요? --- */
-function confirmList(){
-  if(!curType) return [];
-  const st=stageNow(), qs=[];
-  for(const q of (GD.confirmQs&&GD.confirmQs[curType.id])||[]){ const m=q.match(/^\[(신청|귀국)\]\s*(.*)$/); if(m){ if((m[1]==="신청"&&st==="출장 가기 전(신청)")||(m[1]==="귀국"&&st==="귀국 후(정산)")) qs.push(m[2]); } else qs.push(q); }
-  if(!curType.noAmount&&!curType.noPayment&&/카드/.test($("payment").value)) qs.push(...(GD.confirmCard||[]));
-  if(!PAPERLESS.has(curType.id)&&GD.confirmPaper) qs.push(GD.confirmPaper.replace("학과사무실",S.officeRoom||"학과사무실"));
-  return qs;
-}
-
-/* --- 점검표 + 아래 떠 있는 막대 --- */
-function status(){
-  const mf=missingFields(), vs=visibleSlots();
-  const needDocs=vs.filter(s=>!/^입력선택/.test(s.need));
-  const missDocs=needDocs.filter(s=>slotState(s)==="miss");
-  const stageMiss=curType&&curType.id==="overseas-trip"&&!stageNow();
-  const qs=confirmList(), qDone=qs.filter(q=>confirmState[q]).length;
-  const errs=lastCheck.filter(r=>r.lv==="err");
-  return {mf,needDocs,missDocs,stageMiss,qs,qDone,errs};
-}
-function refresh(){
-  if(!curType){ $("floatBar").hidden=true; return; }
-  const t=status();
-  // 점검표
-  const li=(cls,txt,link)=>`<li class="${cls}"><span>${txt}</span>${link?`<a href="#" onclick="${link};return false">고치기 ▸</a>`:""}</li>`;
-  let h=`<h4>✏️ 적을 내용</h4><ul class="rv">${t.mf.length?t.mf.map(x=>li("miss","⭕ "+esc(x.p),`focusEl('${x.el.id}')`)).join(""):li("ok","✅ 꼭 적을 칸을 모두 채웠어요")}</ul>`;
-  h+=`<h4>📎 서류</h4><ul class="rv">`+(t.stageMiss?li("miss","⭕ 국외출장 단계(출장 전 / 귀국 후)를 골라 주세요","focusEl('stageWrap')"):"")
-    +t.needDocs.map(s=>{ const st=slotState(s); return st==="ok"?li("ok",`✅ ${esc(s.short)}${s.files.length?` — 파일 ${s.files.length}개`:s.inOther?" — 다른 파일에 포함":/^입력/.test(s.need)?" — 칸에 적음":""}`)
-      :st==="skip"?li("skip",`➖ ${esc(s.short)} — 해당 없음`):li("miss",`⭕ ${esc(s.short)} ${/해당시/.test(s.need)?"— 올리거나 '해당 없어요' 체크":"— 아직 없어요"}`,`focusSlot('${s.i}')`); }).join("")
-    +(extraSlot&&extraSlot.files.length?li("ok",`✅ 그 밖의 파일 ${extraSlot.files.length}개`):"")
-    +(!t.needDocs.length&&!t.stageMiss?li("skip","➖ 올릴 서류가 없는 요청이에요"):"")+`</ul>`;
-  const fixAt=$("extraWrap").style.display==="none"?"focusEl('amount')":"focusEl('extraWrap')";
-  if(lastCheck.length) h+=`<h4>📋 입력 확인</h4><ul class="rv">${t.errs.length?t.errs.map(r=>li("miss","❌ "+esc(r.msg),fixAt)).join(""):""}${lastCheck.filter(r=>r.lv==="warn").map(r=>li("warn","⚠️ "+esc(r.msg))).join("")}</ul>`;
-  setHTML($("review"),h);
-  // 잠깐!
-  const wch=setHTML($("waitBox"),t.qs.length?`<h4>✋ 잠깐! 이거 하셨나요?</h4><div style="font-size:13px;color:var(--amber);margin-bottom:4px">확인해 보세요. 체크하지 않아도 보낼 수 있지만, 아니면 처리가 늦어질 수 있어요. 모르겠으면 오른쪽 아래 💬 도우미에게 물어보세요.</div>`
-    +t.qs.map((q,k)=>`<label><input type="checkbox" data-q="${k}" ${confirmState[q]?"checked":""}> <span>${esc(q)}</span></label>`).join(""):"");
-  $("waitBox").style.display=t.qs.length?"":"none";
-  if(wch) $("waitBox").querySelectorAll("input[data-q]").forEach(c=>c.onchange=()=>{ confirmState[confirmList()[+c.dataset.q]]=c.checked; refresh(); });
-  // 서류가 빠졌거나 자동검사 ❌ 를 알고 보낼 때
-  let ack="";
-  if(t.missDocs.length) ack+=`<label class="ack"><input type="checkbox" id="ackLate" ${ackLate?"checked":""}> <span>빠진 서류 ${t.missDocs.length}개(${t.missDocs.map(s=>esc(s.short)).join(", ")})는 나중에 따로 내겠습니다. 처리가 늦어지고 '보완요청'이 올 수 있다는 것을 알고 있어요.</span></label>`;
-  if(t.errs.length) ack+=`<label class="ack"><input type="checkbox" id="ackErr" ${ackErr?"checked":""}> <span>입력 확인 ❌ ${t.errs.length}개를 알고도 이대로 보냅니다 (사유는 '내용'에 적었어요).</span></label>`;
-  if(setHTML($("ackBox"),ack)){ if($("ackLate")) $("ackLate").onchange=e=>{ ackLate=e.target.checked; refresh(); };
-  if($("ackErr")) $("ackErr").onchange=e=>{ ackErr=e.target.checked; refresh(); }; }
-  // 보내기 버튼
-  const why=[];
-  if(t.mf.length) why.push(`적을 칸 ${t.mf.length}개`);
-  if(t.stageMiss) why.push("국외출장 단계 고르기");
-  if(t.missDocs.length&&!ackLate) why.push(`서류 ${t.missDocs.length}개 (올리거나, 나중에 낸다고 체크)`);
-  if(t.errs.length&&!ackErr) why.push(`입력 확인 ❌ ${t.errs.length}개 (고치거나, 알고 보낸다고 체크)`);
-  const btn=$("sendBtn"); if(!btn.disabled) btn.classList.toggle("off",why.length>0);
-  $("why").textContent=why.length?"👉 보내기 버튼이 켜지려면: "+why.join(" · "):"";
-  // 아래 떠 있는 막대
-  const docOk=t.needDocs.length-t.missDocs.length;
-  const done=$("doneArea").style.display!=="none";
-  $("floatBar").hidden=done;
-  const FB=$("floatBar"); if(!FB._init){ FB.innerHTML=`<span class="fb" id="fb1"></span><span class="fb" id="fb2"></span><span class="fb hm" id="fb3"></span><button type="button" id="fbBtn"></button>`; FB._init=1; $("fbBtn").onclick=()=>{ $("fbBtn").dataset.go==="send"?focusEl("sendBtn"):goFirstMissing(); }; }
-  const f1=$("fb1"),f2=$("fb2"),f3=$("fb3"),fb=$("fbBtn");
-  f1.className="fb"+(t.mf.length?"":" okk"); setHTML(f1,`✏️ <b>${t.mf.length?"빈칸 "+t.mf.length:"완료"}</b>`);
-  f2.className="fb"+(t.missDocs.length||t.stageMiss?"":" okk"); setHTML(f2,`📎 서류 <b>${t.stageMiss?"단계 고르기":docOk+"/"+t.needDocs.length}</b>`);
-  f3.className="fb hm"+(t.qs.length-t.qDone?"":" okk"); setHTML(f3,`✋ 확인 <b>${t.qDone}/${t.qs.length}</b>`);
-  fb.dataset.go=why.length?"miss":"send"; fb.textContent=why.length?"빠진 곳 ▸":"보내기 ▸";
-}
-function focusEl(id){ const el=$(id); if(!el) return; el.scrollIntoView({behavior:"smooth",block:"center"}); if(el.focus) setTimeout(()=>el.focus(),400); }
-function focusSlot(i){ const el=$("slot-"+i); if(!el) return; el.scrollIntoView({behavior:"smooth",block:"center"}); el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash"); }
-function goFirstMissing(){
-  tried=true; markFields(); const t=status();
-  if(t.mf.length) return focusEl(t.mf[0].el.id);
-  if(t.stageMiss) return focusEl("stageWrap");
-  if(t.missDocs.length&&!ackLate) return focusSlot(t.missDocs[0].i);
-  if(t.errs.length&&!ackErr) return $("extraWrap").style.display==="none"?focusEl("amount"):focusEl("extraWrap");
-  focusEl("sendBtn");
-}
-
-/* --- 보내기 --- */
-function shrinkImage(file){ // 사진은 1600px·JPEG로 줄여 전송
-  return new Promise(res=>{ if(!file.type.startsWith("image/")||file.size<1.5*1024*1024) return res(file);
-    const img=new Image(); img.onload=()=>{ const s=Math.min(1,1600/Math.max(img.width,img.height)); const c=document.createElement("canvas"); c.width=img.width*s; c.height=img.height*s; c.getContext("2d").drawImage(img,0,0,c.width,c.height);
-      c.toBlob(b=>res(new File([b],file.name.replace(/\.\w+$/,"")+".jpg",{type:"image/jpeg"})),"image/jpeg",.85); }; img.onerror=()=>res(file); img.src=URL.createObjectURL(file); });
-}
+const S=window.SITE||{};
+const PROFS=[...new Set(PROJ.map(p=>p[2]))].sort((a,b)=>a.localeCompare(b,"ko"));
+$("pi").innerHTML=`<option value="">교수님 선택</option>`+PROFS.map(p=>`<option>${p}</option>`).join("");
+$("sb").innerHTML=`<option value="">세목</option>`+SB.map(([c,n])=>`<option value="${c}">${c} ${n}</option>`).join("");
+function fillAcct(){ const pi=$("pi").value; const L=PROJ.filter(p=>p[2]===pi);
+  $("acct").innerHTML=`<option value="">계정</option>`+L.map(p=>`<option value="${p[1]}" title="${p[3]}">${p[1]} · ${p[3].slice(0,18)}${p[3].length>18?"…":""}</option>`).join("")+`<option value="__free">직접 입력</option>`; preview(); }
+$("pi").onchange=fillAcct; fillAcct();
+$("acct").onchange=()=>{ $("acctFree").style.display=$("acct").value==="__free"?"block":"none"; preview(); };
+["sb","desc","acctFree"].forEach(id=>$(id).oninput=preview);
+const acctVal=()=>$("acct").value==="__free"?$("acctFree").value.trim().toUpperCase():$("acct").value;
+function fname(){ const a=acctVal()||"계정", s=$("sb").value||"세목", d=($("desc").value.trim()||"내용").replace(/[\\/:*?"<>|]/g,"_"); return `${a}-${s}-${d}.pdf`; }
+function preview(){ $("preview").textContent=fname(); }
+let file=null; const drop=$("drop"), fi=$("fi");
+drop.onclick=()=>fi.click(); fi.onchange=()=>setFile(fi.files[0]);
+drop.ondragover=e=>{e.preventDefault();drop.classList.add("over")}; drop.ondragleave=()=>drop.classList.remove("over");
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove("over");setFile(e.dataTransfer.files[0])};
+function setFile(f){ if(!f) return; if(!/pdf$/i.test(f.name)&&f.type!=="application/pdf"){ alert("PDF 파일만 올릴 수 있습니다. 여러 서류는 PDF 하나로 합쳐 주세요."); return; } file=f; drop.textContent=`📄 ${f.name} (${(f.size/1024/1024).toFixed(1)}MB) — 올릴 때 "${fname()}"로 저장됩니다`; drop.classList.add("has"); fi.value=""; }
 const toB64=f=>new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(",")[1]); r.readAsDataURL(f); });
-const safeName=s=>String(s).replace(/[\\/:*?"<>|]/g,"").trim();
-function docSummary(){
-  const parts=visibleSlots().filter(s=>!/^입력/.test(s.need)).map(s=>{ const st=slotState(s); return `${s.short}:${s.files.length?"파일"+s.files.length:s.inOther?"다른파일에포함":st==="ok"&&s.need==="필수또는입력"?"칸에적음":st==="skip"?"해당없음":"없음"}`; });
-  if(extraSlot.files.length) parts.push("기타:파일"+extraSlot.files.length);
-  const st=stageNow(); return (st?`[${st}] `:"")+parts.join(", ")+(ackLate?" / 빠진 서류 나중에 제출":"");
-}
-function collect(){
-  const v={ action:"submit", type:curType.name, pi:$("pi").value, name:$("name").value.trim(), email:$("email").value.trim(), project:$("project").value.trim(),
-    amount:curType.noAmount?"":$("amount").value.replace(/[^\d]/g,""), desc:$("desc").value.trim()||`(내용 미기재 — 서류로 처리) ${curType.name}`, payment:curType.noAmount?"":curType.noPayment?"대체(카드 없음)":$("payment").value, urgent:$("urgent").checked?"급함":"" };
-  runCheck(); const ex=extraVals(); ex.서류=docSummary(); v.extra=ex; v.check=window.GDCHECK?GDCHECK.summary(lastCheck):"";
-  return v;
-}
-$("sendBtn").onclick=async()=>{
-  tried=true; markFields(); refresh(); $("sendErr").innerHTML="";
-  if($("sendBtn").classList.contains("off")){ goFirstMissing(); return; }
-  const v=collect(); saveMe();
-  const list=[].concat(...visibleSlots().map(s=>s.files.map(f=>({f,tag:s.short}))),extraSlot.files.map(f=>({f,tag:"기타"})));
-  if(!S.apiUrl){ // 메일 대체
-    const body=`[연구비 처리 요청]\n요청종류: ${v.type}\n교수님: ${v.pi}\n요청자: ${v.name}\n이메일: ${v.email}\n과제/계정: ${v.project}\n금액: ${v.amount}원\n결제수단: ${v.payment}\n긴급: ${v.urgent||"보통"}\n서류: ${v.extra.서류}\n\n내용:\n${v.desc}\n\n(첨부파일 ${list.length}개를 이 메일에 붙여 주세요)`;
-    location.href=`mailto:${S.officeEmail}?subject=${encodeURIComponent(`[${v.pi} / ${v.type}] ${v.name}`)}&body=${encodeURIComponent(body)}`; return; }
-  const btn=$("sendBtn"); btn.disabled=true; btn.textContent="보내는 중…"; const prog=$("prog"); prog.style.display=""; const bar=prog.firstElementChild;
+$("send").onclick=async()=>{
+  const out=$("out"); out.innerHTML="";
+  const name=$("name").value.trim(), pi=$("pi").value, acct=acctVal(), sb=$("sb").value, desc=$("desc").value.trim();
+  const errs=[]; if(!name) errs.push("올리는 분 성함"); if(!pi) errs.push("교수님"); if(!/^[A-Z]{1,3}\d{4,5}$/.test(acct)) errs.push("계정코드(예: N48480)"); if(!sb) errs.push("세목"); if(!desc) errs.push("내용"); if(!file) errs.push("증빙 PDF");
+  if(errs.length){ out.innerHTML=`<div class="err">빠진 항목: ${errs.join(", ")}</div>`; return; }
+  if(file.size>20*1024*1024){ out.innerHTML=`<div class="err">PDF가 20MB를 넘습니다. 압축하거나 나눠 올려 주세요.</div>`; return; }
+  if(!S.apiUrl){ out.innerHTML=`<div class="err">접수함 주소(site-config.js apiUrl)가 비어 있습니다.</div>`; return; }
+  const sbName=(SB.find(x=>x[0]===sb)||[])[1]||sb;
+  const v={ action:"submit", type:sbName, pi, name, email:$("email").value.trim()||"staff@local", project:`${acct}-${sb}`, amount:$("amount").value.replace(/\D/g,""), desc:`${desc}${$("memo").value.trim()?"\n메모: "+$("memo").value.trim():""}`, payment:$("payment").value, urgent:"", files:[] };
+  $("send").disabled=true; const bar=$("bar"), bi=bar.querySelector("i"); bar.style.display="block"; bi.style.width="20%";
   try{
-    v.files=[]; for(let i=0;i<list.length;i++){ const f=await shrinkImage(list[i].f); if(f.size>MAXMB*1024*1024) throw new Error(`${f.name} 은(는) ${MAXMB}MB를 넘습니다`);
-      v.files.push({name:safeName(`[${list[i].tag}] ${f.name}`),type:f.type,data:await toB64(f)}); bar.style.width=(30*(i+1)/list.length)+"%"; }
-    bar.style.width="60%";
-    const r=await fetch(S.apiUrl,{method:"POST",body:JSON.stringify(v)}); const j=await r.json(); bar.style.width="100%";
-    if(!j.ok) throw new Error(j.error||"서버 오류");
-    const late=status().missDocs.map(s=>s.short);
-    $("sendArea").style.display="none"; $("ackBox").innerHTML=""; $("doneArea").style.display="";
-    $("doneArea").innerHTML=`<div class="result">✅ 접수되었습니다<b>${esc(j.id)}</b><div style="margin-top:6px">접수번호를 기억해 두세요.</div>`
-      +(late.length?`<div style="margin:10px auto 0;max-width:520px;background:var(--red-bg);border-radius:12px;padding:10px 14px;color:var(--red);font-weight:700">📌 나중에 꼭 내야 할 서류: ${late.map(esc).join(", ")}</div>`:"")
-      +(PAPERLESS.has(curType.id)?"":`<div style="margin:10px auto 0;max-width:520px;background:#fff;border:2px dashed #86efac;border-radius:12px;padding:10px 14px">📦 종이 원본(영수증·거래명세서 등)은<br><b style="display:inline;font-size:17px;color:var(--ink)">${esc(S.officeRoom)}</b>로 가져다 주세요.</div>`)
-      +`<div style="margin-top:8px">처리 상태가 바뀌면 <b>${esc(v.email)}</b>로 메일이 갑니다.</div><div style="margin-top:10px"><button class="btn small sec" onclick="location.reload()">새 요청 올리기</button></div></div>`;
-    $("floatBar").hidden=true; location.hash="sendStep";
-  }catch(e){ $("sendErr").innerHTML=`<div class="err">보내지 못했습니다: ${esc(e.message)} — 다시 시도하거나 담당자에게 메일로 보내 주세요.</div>`; btn.disabled=false; btn.textContent="📤 요청 보내기"; prog.style.display="none"; refresh(); }
+    v.files.push({name:fname(), type:"application/pdf", data:await toB64(file)}); bi.style.width="50%";
+    const r=await fetch(S.apiUrl,{method:"POST",body:JSON.stringify(v)}); const j=await r.json(); bi.style.width="100%";
+    if(!j.ok) throw new Error(j.error||"접수 실패");
+    out.innerHTML=`<div class="result">접수됐습니다<b>${j.id}</b>${pi} 교수님 · ${fname()}<br><small>담당자가 내려받아 ZEUS 지급신청으로 처리합니다.</small></div>`;
+    file=null; drop.textContent="여기에 PDF를 끌어다 놓거나 눌러서 고르세요"; drop.classList.remove("has"); $("desc").value=""; $("amount").value=""; $("memo").value=""; preview();
+  }catch(e){ out.innerHTML=`<div class="err">올리지 못했습니다: ${e.message}</div>`; }
+  finally{ $("send").disabled=false; setTimeout(()=>{bar.style.display="none";bi.style.width="0";},800); }
 };
-/* 조회 */
-async function lookup(){
-  const email=$("qEmail").value.trim(), id=$("qId").value.trim(); const out=$("qResult");
-  if(!email&&!id){ out.innerHTML=`<div class="err">이메일 또는 접수번호를 넣어 주세요</div>`; return; }
-  if(!S.apiUrl){ out.innerHTML=`<div class="err">접수 서버가 아직 연결되지 않았습니다. 담당자에게 메일로 문의해 주세요.</div>`; return; }
-  out.innerHTML="조회 중…";
-  try{ const r=await fetch(`${S.apiUrl}?action=status&email=${encodeURIComponent(email)}&id=${encodeURIComponent(id)}`); const j=await r.json();
-    if(!j.ok) throw new Error(j.error); if(!j.rows.length){ out.innerHTML="해당하는 요청이 없습니다."; return; }
-    out.innerHTML=`<table><tr><th>접수번호</th><th>접수일시</th><th>종류</th><th>금액</th><th>상태</th><th>담당자 메모</th></tr>${j.rows.reverse().map(x=>`<tr><td>${esc(x.접수번호)}</td><td>${esc(x.접수일시)}</td><td>${esc(x.요청종류)}</td><td>${esc(x.금액)}</td><td><span class="pill ${esc(x.처리상태)}">${esc(x.처리상태)}</span></td><td style="text-align:left">${esc(x.담당자메모)}</td></tr>`).join("")}</table>`;
-  }catch(e){ out.innerHTML=`<div class="err">조회 실패: ${esc(e.message)}</div>`; }
-}
 </script>
-<script src="kb.js?v=20261022b"></script>
-<script src="chat.js?v=20261022c"></script>
 </body>
 </html>
