@@ -5,137 +5,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>연구비 증빙 올리기 — 환경·에너지공학과</title>
 <style>
-:root{--ink:#1d2433;--muted:#5f6b7a;--line:#e3e7ee;--blue:#2563eb;--blue-d:#1e40af;--blue-bg:#e8f0fe;--red:#d93025;--red-bg:#fdecea;--green:#15803d;--green-bg:#e6f6ea;--bg:#f4f6fa}
+:root{--ink:#1d2433;--muted:#5f6b7a;--line:#e3e7ee;--blue:#2563eb;--blue-d:#1e40af;--blue-bg:#e8f0fe;--red:#d93025;--red-bg:#fdecea;--green:#15803d;--green-bg:#e6f6ea;--amber:#b45309;--amber-bg:#fff4e0;--bg:#f4f6fa}
 *{box-sizing:border-box}
-body{margin:0;font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.6}
-header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:26px 20px}
-.wrap{max-width:720px;margin:0 auto;padding:0 16px}
-header h1{margin:0;font-size:24px}
-header p{margin:6px 0 0;opacity:.92;font-size:15px}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 22px;box-shadow:0 1px 3px rgba(0,0,0,.04);margin:18px 0}
-label.f{display:block;font-weight:700;font-size:14px;margin:12px 0 4px}
+body{margin:0;font-family:"Malgun Gothic","맑은 고딕","Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;color:var(--ink);background:var(--bg);font-size:15px;line-height:1.5}
+header{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:22px 20px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header h1{margin:0;font-size:23px}
+header p{margin:6px 0 0;opacity:.92;font-size:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.04);margin:16px 0}
+label.f{display:block;font-weight:700;font-size:13.5px;margin:10px 0 4px}
 label.f small{font-weight:400;color:var(--muted)}
-input.t,select.t,textarea.t{width:100%;padding:11px 12px;border:2px solid var(--line);border-radius:12px;font-size:16px;font-family:inherit;background:#fff}
+input.t,select.t,textarea.t{width:100%;padding:10px 12px;border:2px solid var(--line);border-radius:12px;font-size:15px;font-family:inherit;background:#fff}
 input.t:focus,select.t:focus,textarea.t:focus{outline:0;border-color:var(--blue)}
+input.t[readonly]{background:#f3f5f8;color:var(--muted)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.grid3{display:grid;grid-template-columns:1.2fr 1fr 2fr;gap:8px}
-@media (max-width:600px){.grid2,.grid3{grid-template-columns:1fr}}
-.preview{background:var(--blue-bg);border-radius:12px;padding:10px 14px;font-family:ui-monospace,Consolas,monospace;font-size:15px;color:var(--blue-d);word-break:break-all;margin-top:10px}
-.drop{border:2px dashed #93a4c3;border-radius:16px;padding:22px;text-align:center;background:#f8fafc;cursor:pointer;color:var(--muted);margin-top:8px}
+@media (max-width:600px){.grid2{grid-template-columns:1fr}}
+.drop{border:2px dashed #93a4c3;border-radius:16px;padding:26px;text-align:center;background:#f8fafc;cursor:pointer;color:var(--muted);margin-top:8px;font-size:15px}
+.drop b{color:var(--blue-d)}
 .drop.over{background:var(--blue-bg);border-color:var(--blue)}
-.drop.has{border-style:solid;border-color:var(--green);background:var(--green-bg);color:var(--green);font-weight:700}
-.btn{display:inline-block;padding:13px 24px;border-radius:12px;background:var(--blue);color:#fff;font-weight:800;font-size:17px;border:0;cursor:pointer;font-family:inherit;width:100%;margin-top:16px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+th,td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:left;vertical-align:middle}
+th{color:var(--muted);font-weight:700;font-size:12.5px;white-space:nowrap}
+td input,td select{width:100%;padding:6px 7px;border:1.5px solid var(--line);border-radius:8px;font-size:13.5px;font-family:inherit;background:#fff}
+td input.bad,td select.bad{border-color:var(--red);background:#fff8f7}
+td .fn{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--muted);word-break:break-all}
+td .x{background:none;border:0;color:var(--red);cursor:pointer;font-size:16px}
+tr.done td{background:var(--green-bg)}
+tr.fail td{background:var(--red-bg)}
+.btn{display:inline-block;padding:13px 24px;border-radius:12px;background:var(--blue);color:#fff;font-weight:800;font-size:16px;border:0;cursor:pointer;font-family:inherit;width:100%;margin-top:14px}
 .btn:disabled{opacity:.5;cursor:default}
 .bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:10px;display:none}
 .bar i{display:block;height:100%;width:0;background:var(--blue);transition:width .3s}
-.result{background:var(--green-bg);border:2px solid #86efac;border-radius:16px;padding:18px;text-align:center;margin-top:14px}
-.result b{font-size:26px;color:var(--green);display:block}
+.result{background:var(--green-bg);border:2px solid #86efac;border-radius:16px;padding:14px;text-align:center;margin-top:14px}
 .err{background:var(--red-bg);border-radius:12px;padding:10px 14px;color:var(--red);font-weight:700;margin-top:10px}
-.help{font-size:13.5px;color:var(--muted);margin:0}
+.note{background:var(--amber-bg);border-radius:12px;padding:8px 12px;color:var(--amber);font-size:13px;margin-top:8px}
+.help{font-size:13px;color:var(--muted);margin:0;padding-left:18px}
 .help li{margin:2px 0}
-footer{color:var(--muted);font-size:13px;text-align:center;padding:16px}
+footer{color:var(--muted);font-size:12.5px;text-align:center;padding:16px}
 footer a{color:var(--blue-d)}
-.hint{font-size:13px;color:var(--muted);margin-top:4px}
+.pill{display:inline-block;padding:1px 8px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.pill.ok{background:var(--green-bg);color:var(--green)}.pill.bad{background:var(--red-bg);color:var(--red)}.pill.na{background:#eef1f5;color:var(--muted)}
+.sum{font-size:14px;margin-top:8px;color:var(--muted)}
+.sum b{color:var(--ink)}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <h1>연구비 증빙 올리기</h1>
-  <p>환경·에너지공학과 연구비 담당 선생님용 — 검토 끝난 증빙을 PDF 한 개로 묶어 올리면 ZEUS 지급신청으로 이어집니다.</p>
+  <p>환경·에너지공학과 연구비 담당 선생님용 — 파일 이름을 <b>계정-세목-내용.pdf</b>로 해 두셨으면 올리기만 하면 됩니다. 몇십 개를 한꺼번에 올려도 됩니다.</p>
 </div></header>
 
 <div class="wrap">
   <div class="card">
-    <label class="f">올리는 분 <small>(담당 선생님 성함)</small></label>
     <div class="grid2">
-      <input class="t" id="name" placeholder="예) 조다솜" autocomplete="name">
-      <input class="t" id="email" type="email" placeholder="이메일 (처리 결과 알림, 선택)">
+      <div><label class="f">올리는 분</label><select class="t" id="who"></select></div>
+      <div><label class="f">이메일 <small>(자동)</small></label><input class="t" id="email" readonly placeholder="올리는 분을 고르면 채워집니다"></div>
     </div>
 
-    <label class="f">교수님</label>
-    <select class="t" id="pi"></select>
+    <label class="f">증빙 PDF <small>— 파일 이름 예) I10610-261-재료비 켐리시스.pdf · N46150-233-분석료 5건.pdf</small></label>
+    <div class="drop" id="drop"><b>여기에 PDF를 끌어다 놓거나 눌러서 고르세요</b><br><span style="font-size:13px">여러 개를 한 번에 올릴 수 있어요 · 파일당 20MB 이하</span></div>
+    <input type="file" id="fi" accept="application/pdf,.pdf" multiple hidden>
 
-    <label class="f">계정 · 세목 · 내용 <small>(파일 이름이 됩니다)</small></label>
-    <div class="grid3">
-      <select class="t" id="acct"></select>
-      <select class="t" id="sb"></select>
-      <input class="t" id="desc" placeholder="내용 예) 재료비 켐리시스 / 분석료 5건" maxlength="60">
-    </div>
-    <div class="hint">목록에 없는 계정이면 '직접 입력'을 고르고 적어 주세요.</div>
-    <input class="t" id="acctFree" placeholder="계정코드 직접 입력 (예: N48480)" style="display:none;margin-top:6px" maxlength="8">
-    <div class="preview" id="preview">계정-세목-내용.pdf</div>
-
-    <div class="grid2">
-      <div><label class="f">금액 <small>(원, 선택)</small></label><input class="t" id="amount" inputmode="numeric" placeholder="예) 486500"></div>
-      <div><label class="f">결제·처리 방식</label>
-        <select class="t" id="payment">
-          <option>세금계산서(직접구매)</option><option>연구비카드</option><option>법인카드</option><option>분석료 대체(중앙기기연구소)</option><option>출장비</option><option>기타</option>
-        </select></div>
+    <div id="tableWrap" hidden>
+      <div class="sum" id="sum"></div>
+      <table id="tbl"><thead><tr><th style="width:34px">#</th><th>파일</th><th style="width:110px">교수님</th><th style="width:92px">계정</th><th style="width:70px">세목</th><th>내용</th><th style="width:105px">금액(원)</th><th style="width:150px">결제·처리 방식</th><th style="width:30px"></th></tr></thead><tbody id="rows"></tbody></table>
+      <div class="note">빨간 칸은 파일 이름에서 못 읽은 항목입니다. 그 칸만 고쳐 주세요. 금액은 PDF 글자에서 찾아 넣은 값이라 스캔본은 비어 있을 수 있어요(비워 두셔도 담당자가 ZEUS 청구서·세금계산서 금액으로 맞춥니다).</div>
     </div>
 
-    <label class="f">증빙 PDF <small>(검토 끝난 서류를 한 파일로, 20MB 이하)</small></label>
-    <div class="drop" id="drop">여기에 PDF를 끌어다 놓거나 눌러서 고르세요</div>
-    <input type="file" id="fi" accept="application/pdf,.pdf" hidden>
+    <label class="f">메모 <small>(선택, 모든 파일에 함께 붙습니다)</small></label>
+    <textarea class="t" id="memo" style="min-height:56px" placeholder="예) 켐리시스 건은 I10600으로."></textarea>
 
-    <label class="f">담당자 메모 <small>(선택)</small></label>
-    <textarea class="t" id="memo" style="min-height:70px" placeholder="예) 켐리시스 건은 I10600으로. 청구서 5건 합계 260,400원."></textarea>
-
-    <button class="btn" id="send">접수함에 올리기</button>
+    <button class="btn" id="send" disabled>접수함에 올리기</button>
     <div class="bar" id="bar"><i></i></div>
     <div id="out"></div>
   </div>
 
   <div class="card">
     <ul class="help">
-      <li>세목 번호: 261 재료비 · 262 사무용품 · 250 유인물 · 233 분석료(내부) · 223 분석료(외부) · 241 국내여비 · 242 국외여비 · 350 회의비 · 284 학회등록비 · 282 전문가활용 · 420 논문게재·교정 · 375 우편·공공요금 · 611 연구수당</li>
-      <li>부가세 과제(I·C·G 계정)는 세금계산서 공급가액만 적어도 됩니다. 부가세는 ZEUS에서 066026으로 자동 분리합니다.</li>
-      <li>올린 뒤에는 담당(주영현)이 접수함에서 내려받아 "ZEUS 지급신청 처리해줘"로 처리하고, 전자결재만 사람이 합니다.</li>
+      <li>세목 번호: 261 재료비 · 262 사무용품 · 250 유인물 · 233 분석료(내부, 중앙기기연구소) · 223 분석료(외부) · 241 국내여비 · 242 국외여비 · 350 회의비 · 284 학회등록비 · 282 전문가활용 · 420 논문게재·교정 · 375 우편·공공요금 · 611 연구수당</li>
+      <li>파일 하나가 접수 한 건(지급신청 한 장)입니다. 청구서 여러 장을 한 지급신청으로 묶으려면 PDF 하나로 합쳐서 "N46150-233-분석료 5건.pdf"처럼 올려 주세요.</li>
+      <li>올린 뒤에는 담당(주영현)이 접수함에서 내려받아 ZEUS 지급신청을 처리하고, 전자결재만 사람이 합니다.</li>
     </ul>
   </div>
-  <footer>환경·에너지공학과 연구비 담당 · 공과대학 교학팀 · <a href="index_v1_학생접수.html">예전 안내·양식 페이지</a></footer>
+  <footer>환경·에너지공학과 연구비 담당 · 공과대학 교학팀 · <a href="index_v1_학생접수.html">학생용 안내·양식 페이지</a></footer>
 </div>
 
 <script src="site-config.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
 const PROJ=[["NN48480","N48480","주종훈","고가 원소 의존성을 탈피한 저가·고안정성 고체산화물셀 공기극 및 단전지 ","20270831"],["NN48270","N48270","김형록","AI 요소모델(Emulator)-수치예보모델 연계 기반 한국형 위험기상 ","20270831"],["NN48120","N48120","한승희","표층해수 내 용존2가수은의 광환원 기작 연구","20270831"],["NN47800","N47800","주종훈","SOEC 전용 핵심부품 시험 플랫폼 구축 및 신뢰성 평가 연구","20261231"],["NN47620","N47620","황희정","지구-행성 진화 및 핵심 광물 연구를 위한 고온·고압 실시간 극한환경 마","20270228"],["NN47520","N47520","박영준","크러스레이트 하이드레이트의 열역학적 메타 안정성 기반 수소-천연가스 맞춤","20270430"],["NN47390","N47390","최희철","차세대 액상폐기물 무방류 (ZLD) 시스템 구현을 위한 태양광 열에너지 ","20270430"],["NN47240","N47240","주종훈","고체산화물 수전해전지의 내구성 향상을 위한 글로벌 협력 연구 체계 구축","20261231"],["NN46540","N46540","주종훈","[박사과정생_최수민]우수한 성능 및 안정성을 위한 한계 돌파형 고체 산화","20270228"],["NN46340","N46340","송철한","수치모델-인공지능 융합 기반 대기질-재생에너지 통합 예측 시스템 개발","20270228"],["NN46280","N46280","고용석","[박사후국내연수]미생물을 활용한 Bio-Fenton 시스템 구성에 의한 ","20270228"],["NN46190","N46190","주종훈","부하변동 및 역전류 대응형 차세대 알칼라인 수전해 고활성·고내구성·대면적","20261231"],["NN46160","N46160","이재영","차세대 고효율 음이온교환막 수전해 원천기술개발","20261231"],["NN46150","N46150","주종훈","중온형(700℃) 고체산화물수전해 내구성, 효율 향상 및 스케일업을 위한","20261231"],["NN45800","N45800","황희정","다중환경에서의 Ca 인산염 광물의 원자구조 및 물리·화학적 특성 연구: ","20270228"],["NN45710","N45710","장인섭","생전기촉매 기반 바이오케미칼 합성을 위한 다중효소 네트워크 개발","20270228"],["NN45470","N45470","허호길","Bacterial Bio-Fenton 시스템 개발에 의한 난분해성 환경오","20270228"],["NN45410","N45410","김태영","중수 표지법을 활용한 토양 미세플라스틱과 첨가제의 독성오믹스 분석","20270228"],["NN45250","N45250","이재영","화학에너지 저장 및 변환 공정의 미래연구센터 구축","20261231"],["GR08008","R08008","이윤호","[고려대학교 이재상] 외부과제 참여연구원 인건비 계정(이윤호)","20270430"],["GR07859","R07859","송철한","[울산과학기술원 송창근] 외부과제 참여연구원 인건비 계정(송철한)","20261219"],["GM20101","M20101","민경은","[Sub1-주관]관측 기반 VOCs-ROx-NOx 연계 오존 생성 특성 ","20261231"],["GM20080","M20080","김형록","홍수특보지점 확대와 기후위기 대응을 위한 AI-물리기반 하이브리드 홍수예","20261231"],["GM20030","M20030","주종훈","(2/4) 다중스케일 열화 모델 및 AI 기반 수명 예측을 통한고내구성 ","20261231"],["GM19660","M19660","주종훈","국산 지르코니아 소재 및 셀 적용 SOEC 제품 활용기술 개발","20261231"],["GM19590","M19590","박영준","AI-순환경제 클러스터링 특성화대학원 육성사업","20261231"],["GM19410","M19410","민경은","반응성 할로겐 화합물의 북극 대기 산화 영향 연구","20261231"],["GM19150","M19150","박영준","AI-순환경제 클러스터링 특성화대학원 육성사업","20251231"],["GKH1090","KH1090","이재영","AI 동반 수소 생산·활용, 유출평가 기반 탈탄소화 사업","20261231"],["GKH0880","KH0880","김형록","기후변화 대응을 위한 AI 기반 차세대 기후테크: 실시간 자연재해/수질 ","20261231"],["GK01130","K01130","박영준","연구보전비","20270228"],["GI10650","I10650","박영준","﻿리튬 염호 내 알칼리 및 알칼리 토금속 제거를 위한 자연적 온도-스윙 ","20270226"],["GI10610","I10610","박영준","안정도∙용해도 차이를 활용한 킬레이트 선택성 탄소광물화 희토류 금속 분리","20261225"],["GI10600","I10600","박영준","복잡계·저농도 리튬 염호 내 리튬회수를 위한 전기화학적 플랫폼 기반 차세","20261225"],["GI10410","I10410","민경은","반도체 FAB용 VOC 분석기 개발","20270914"],["GG17200","G17200","이재영","지능형 수소기술 혁신연구단(울산과학기술원)","20261231"],["GE13110","E13110","이윤호","[고려대학교 이재상]워터 리파이너리 플랫폼 자동화/모듈화 선도연구센터","20270430"],["GE13090","E13090","이윤호","[군산대학교 신재돈]먹는물 과불화합물 총량 및 구성성분 분석 기술개발","20261231"],["GE13080","E13080","송철한","[울산과학기술원 송창근] 4단계('26~'28) 한중 대기질 공동연구(Ⅰ","20261219"],["GE13040","E13040","송철한","[국립목포대학교 송명기] 전남 중서부 지역 대기오염물질 특성 진단 및 배","20281231"],["GC00630","C00630","한승희","안동호 상류 어류의 수은 발생 근원조사 연구","20271207"],["GC00620","C00620","한승희","2026년 국가 수은통합측정망 운영사업","20261224"],["GC00610","C00610","강창근","여자만 및 진해만 남부 어장수용력 산정인자 조사(Ⅱ) 및 수용력 산정","20261130"],["GC00570","C00570","강창근","패류 양식어장 경쟁생물 저감 및 어장환경 개선방안 연구","20261130"],["GC00540","C00540","강창근","만호해역 김 양식장 어장수용력 산정","20261130"],["GC00520","C00520","민경은","대기중 산화제 반응성에 기반한 지역별 오존 생성 특성 및 민감도 평가 연","20261224"]];
-const SB=[["261","재료비"],["262","사무용품"],["250","유인물"],["233","분석료(내부)"],["223","분석료(외부)"],["241","국내여비"],["242","국외여비"],["350","회의비"],["345","야근식대"],["284","학회등록비"],["282","전문가활용"],["420","논문게재·교정"],["375","우편·공공요금"],["290","교육훈련비"],["437","소프트웨어"],["191","연구기자재"],["192","공기구비품"],["172","외부인건비"],["611","연구수당"],["613","학생인건비"]];
+const STAFF=[["박근정","pgj@gist.ac.kr"],["이지혜","ljh8014@gist.ac.kr"],["양수현","shyang00@gist.ac.kr"],["최주연","sapp0900@gist.ac.kr"],["조다솜","dsj424@gist.ac.kr"],["최수연","sooyean1@gist.ac.kr"],["이건희","2gun2049@gist.ac.kr"]];
+const SB={"261":"재료비","262":"사무용품","250":"유인물","233":"분석료(내부)","223":"분석료(외부)","241":"국내여비","242":"국외여비","350":"회의비","345":"야근식대","284":"학회등록비","282":"전문가활용","420":"논문게재·교정","375":"우편·공공요금","290":"교육훈련비","437":"소프트웨어","191":"연구기자재","192":"공기구비품","172":"외부인건비","611":"연구수당","613":"학생인건비","378":"제세공과금","258":"연구환경조성비"};
+const PAY=["세금계산서(직접구매)","연구비카드","법인카드","분석료 대체(중앙기기연구소)","출장비","기타"];
 const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const S=window.SITE||{};
 const PROFS=[...new Set(PROJ.map(p=>p[2]))].sort((a,b)=>a.localeCompare(b,"ko"));
-$("pi").innerHTML=`<option value="">교수님 선택</option>`+PROFS.map(p=>`<option>${p}</option>`).join("");
-$("sb").innerHTML=`<option value="">세목</option>`+SB.map(([c,n])=>`<option value="${c}">${c} ${n}</option>`).join("");
-function fillAcct(){ const pi=$("pi").value; const L=PROJ.filter(p=>p[2]===pi);
-  $("acct").innerHTML=`<option value="">계정</option>`+L.map(p=>`<option value="${p[1]}" title="${p[3]}">${p[1]} · ${p[3].slice(0,18)}${p[3].length>18?"…":""}</option>`).join("")+`<option value="__free">직접 입력</option>`; preview(); }
-$("pi").onchange=fillAcct; fillAcct();
-$("acct").onchange=()=>{ $("acctFree").style.display=$("acct").value==="__free"?"block":"none"; preview(); };
-["sb","desc","acctFree"].forEach(id=>$(id).oninput=preview);
-const acctVal=()=>$("acct").value==="__free"?$("acctFree").value.trim().toUpperCase():$("acct").value;
-function fname(){ const a=acctVal()||"계정", s=$("sb").value||"세목", d=($("desc").value.trim()||"내용").replace(/[\\/:*?"<>|]/g,"_"); return `${a}-${s}-${d}.pdf`; }
-function preview(){ $("preview").textContent=fname(); }
-let file=null; const drop=$("drop"), fi=$("fi");
-drop.onclick=()=>fi.click(); fi.onchange=()=>setFile(fi.files[0]);
+const acctMap={}; PROJ.forEach(p=>{acctMap[p[1]]=p; acctMap[p[0]]=p;});
+$("who").innerHTML=`<option value="">선택</option>`+STAFF.map(s=>`<option value="${s[0]}">${s[0]}</option>`).join("");
+try{ const m=localStorage.getItem("rf.staff"); if(m&&STAFF.some(s=>s[0]===m)) $("who").value=m; }catch(e){}
+function syncEmail(){ const s=STAFF.find(x=>x[0]===$("who").value); $("email").value=s?s[1]:""; try{localStorage.setItem("rf.staff",$("who").value);}catch(e){} }
+$("who").onchange=syncEmail; syncEmail();
+if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"; }
+
+let rows=[]; // {file, acct, sb, desc, pi, amount, pay, status}
+function parseName(name){
+  const base=name.replace(/\.pdf$/i,"").trim();
+  const m=base.match(/^([A-Za-z]{1,3}\d{4,5})\s*[-_ ]\s*(\d{3})\s*[-_ ]\s*(.+)$/);
+  if(m) return {acct:m[1].toUpperCase(), sb:m[2], desc:m[3].trim()};
+  const a=base.match(/([A-Za-z]{1,3}\d{4,5})/), s=base.match(/(?:^|[^\d])(\d{3})(?![\d])/);
+  return {acct:a?a[1].toUpperCase():"", sb:s?s[1]:"", desc:base.replace(a?a[1]:"","").replace(/^[-_ ]+/,"").trim()};
+}
+function guessPay(sb,text){
+  if(sb==="233") return PAY[3];
+  if(/세금계산서|승인번호|공급가액/.test(text||"")) return PAY[0];
+  if(/241|242/.test(sb)) return PAY[4];
+  if(/네이버|카드|승인/.test(text||"")) return PAY[1];
+  return sb==="233"?PAY[3]:PAY[0];
+}
+async function pdfText(file){ // 앞 4쪽만, 스캔본은 빈 문자열
+  if(!window.pdfjsLib) return "";
+  try{ const doc=await pdfjsLib.getDocument({data:await file.arrayBuffer()}).promise; let t="";
+    for(let i=1;i<=Math.min(doc.numPages,4);i++){ const pg=await doc.getPage(i); const c=await pg.getTextContent(); t+=c.items.map(x=>x.str).join(" ")+"\n"; }
+    return t; }catch(e){ return ""; }
+}
+function findAmount(text){
+  if(!text) return "";
+  const pats=[/청구금액[^0-9]{0,30}?([\d,]{4,})/, /합계\s*금액[^0-9]{0,20}([\d,]{4,})/, /총\s*계[^0-9]{0,20}([\d,]{4,})/, /합\s*계[^0-9]{0,20}([\d,]{4,})/, /금\s*액\s*([\d,]{4,})\s*원/, /([\d,]{5,})\s*원/];
+  for(const p of pats){ const m=text.match(p); if(m){ const n=m[1].replace(/,/g,""); if(+n>0) return n; } }
+  return "";
+}
+async function addFiles(list){
+  const arr=[...list].filter(f=>/\.pdf$/i.test(f.name)||f.type==="application/pdf");
+  if(arr.length!==list.length) alert("PDF가 아닌 파일은 뺐습니다. 여러 서류는 PDF 하나로 합쳐 주세요.");
+  for(const f of arr){
+    if(rows.some(r=>r.file.name===f.name&&r.file.size===f.size)) continue;
+    const p=parseName(f.name); const pj=acctMap[p.acct];
+    const r={file:f, acct:p.acct, sb:p.sb, desc:p.desc, pi:pj?pj[2]:"", amount:"", pay:guessPay(p.sb,""), status:"", text:""};
+    rows.push(r); render();
+    pdfText(f).then(t=>{ r.text=t; if(!r.amount) r.amount=findAmount(t); if(!p.sb||p.sb!=="233") r.pay=guessPay(r.sb,t); render(); });
+  }
+  render();
+}
+const drop=$("drop"), fi=$("fi");
+drop.onclick=()=>fi.click(); fi.onchange=()=>{addFiles(fi.files); fi.value="";};
 drop.ondragover=e=>{e.preventDefault();drop.classList.add("over")}; drop.ondragleave=()=>drop.classList.remove("over");
-drop.ondrop=e=>{e.preventDefault();drop.classList.remove("over");setFile(e.dataTransfer.files[0])};
-function setFile(f){ if(!f) return; if(!/pdf$/i.test(f.name)&&f.type!=="application/pdf"){ alert("PDF 파일만 올릴 수 있습니다. 여러 서류는 PDF 하나로 합쳐 주세요."); return; } file=f; drop.textContent=`📄 ${f.name} (${(f.size/1024/1024).toFixed(1)}MB) — 올릴 때 "${fname()}"로 저장됩니다`; drop.classList.add("has"); fi.value=""; }
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove("over");addFiles(e.dataTransfer.files)};
+const fname=r=>`${r.acct||"계정"}-${r.sb||"세목"}-${(r.desc||"내용").replace(/[\\/:*?"<>|]/g,"_")}.pdf`;
+function render(){
+  $("tableWrap").hidden=!rows.length; $("send").disabled=!rows.length;
+  $("rows").innerHTML=rows.map((r,i)=>`<tr class="${r.status}" data-i="${i}">
+    <td>${i+1}</td>
+    <td><div class="fn">${esc(r.file.name)}</div>${r.status==="done"?`<span class="pill ok">접수 ${esc(r.id)}</span>`:r.status==="fail"?`<span class="pill bad">${esc(r.err)}</span>`:(r.acct&&r.sb&&r.desc&&r.pi)?`<span class="pill ok">파일명에서 읽음</span>`:`<span class="pill bad">확인 필요</span>`}</td>
+    <td><select data-k="pi" class="${r.pi?"":"bad"}"><option value="">선택</option>${PROFS.map(p=>`<option ${p===r.pi?"selected":""}>${p}</option>`).join("")}</select></td>
+    <td><input data-k="acct" value="${esc(r.acct)}" class="${/^[A-Z]{1,3}\d{4,5}$/.test(r.acct)?"":"bad"}" placeholder="N48480"></td>
+    <td><input data-k="sb" value="${esc(r.sb)}" class="${/^\d{3}$/.test(r.sb)?"":"bad"}" placeholder="261" title="${esc(SB[r.sb]||"")}"></td>
+    <td><input data-k="desc" value="${esc(r.desc)}" class="${r.desc?"":"bad"}" placeholder="재료비 켐리시스"></td>
+    <td><input data-k="amount" value="${esc(r.amount)}" inputmode="numeric" placeholder="자동/비워도 됨"></td>
+    <td><select data-k="pay">${PAY.map(p=>`<option ${p===r.pay?"selected":""}>${p}</option>`).join("")}</select></td>
+    <td>${r.status==="done"?"":`<button class="x" data-del="${i}" title="빼기">✕</button>`}</td></tr>`).join("");
+  const tot=rows.reduce((s,r)=>s+(+String(r.amount).replace(/\D/g,"")||0),0), bad=rows.filter(r=>!(r.acct&&r.sb&&r.desc&&r.pi)&&r.status!=="done").length;
+  $("sum").innerHTML=`파일 <b>${rows.length}개</b>${tot?` · 금액 합 <b>${tot.toLocaleString("ko-KR")}원</b>(읽힌 것만)`:""}${bad?` · <span class="pill bad">확인 필요 ${bad}건</span>`:""}`;
+}
+$("rows").addEventListener("input",e=>{ const tr=e.target.closest("tr"), k=e.target.dataset.k; if(!tr||!k) return; const r=rows[+tr.dataset.i]; let v=e.target.value; if(k==="acct"){ v=v.toUpperCase().trim(); const pj=acctMap[v]; if(pj&&!r.pi){ r.pi=pj[2]; } } if(k==="sb"&&v==="233") r.pay=PAY[3]; r[k]=v; if(k==="acct"||k==="pi") render(); });
+$("rows").addEventListener("change",e=>{ const tr=e.target.closest("tr"), k=e.target.dataset.k; if(!tr||!k) return; rows[+tr.dataset.i][k]=e.target.value; render(); });
+$("rows").addEventListener("click",e=>{ const d=e.target.closest("[data-del]"); if(d){ rows.splice(+d.dataset.del,1); render(); } });
 const toB64=f=>new Promise(res=>{ const r=new FileReader(); r.onload=()=>res(r.result.split(",")[1]); r.readAsDataURL(f); });
 $("send").onclick=async()=>{
   const out=$("out"); out.innerHTML="";
-  const name=$("name").value.trim(), pi=$("pi").value, acct=acctVal(), sb=$("sb").value, desc=$("desc").value.trim();
-  const errs=[]; if(!name) errs.push("올리는 분 성함"); if(!pi) errs.push("교수님"); if(!/^[A-Z]{1,3}\d{4,5}$/.test(acct)) errs.push("계정코드(예: N48480)"); if(!sb) errs.push("세목"); if(!desc) errs.push("내용"); if(!file) errs.push("증빙 PDF");
-  if(errs.length){ out.innerHTML=`<div class="err">빠진 항목: ${errs.join(", ")}</div>`; return; }
-  if(file.size>20*1024*1024){ out.innerHTML=`<div class="err">PDF가 20MB를 넘습니다. 압축하거나 나눠 올려 주세요.</div>`; return; }
+  const who=$("who").value, email=$("email").value;
+  if(!who){ out.innerHTML=`<div class="err">올리는 분을 골라 주세요.</div>`; return; }
+  const todo=rows.filter(r=>r.status!=="done");
+  const bad=todo.filter(r=>!(/^[A-Z]{1,3}\d{4,5}$/.test(r.acct)&&/^\d{3}$/.test(r.sb)&&r.desc&&r.pi));
+  if(bad.length){ out.innerHTML=`<div class="err">빨간 칸 ${bad.length}건을 먼저 채워 주세요 (교수님·계정·세목·내용).</div>`; render(); return; }
+  const big=todo.find(r=>r.file.size>20*1024*1024); if(big){ out.innerHTML=`<div class="err">${esc(big.file.name)}이(가) 20MB를 넘습니다.</div>`; return; }
   if(!S.apiUrl){ out.innerHTML=`<div class="err">접수함 주소(site-config.js apiUrl)가 비어 있습니다.</div>`; return; }
-  const sbName=(SB.find(x=>x[0]===sb)||[])[1]||sb;
-  const v={ action:"submit", type:sbName, pi, name, email:$("email").value.trim()||"staff@local", project:`${acct}-${sb}`, amount:$("amount").value.replace(/\D/g,""), desc:`${desc}${$("memo").value.trim()?"\n메모: "+$("memo").value.trim():""}`, payment:$("payment").value, urgent:"", files:[] };
-  $("send").disabled=true; const bar=$("bar"), bi=bar.querySelector("i"); bar.style.display="block"; bi.style.width="20%";
-  try{
-    v.files.push({name:fname(), type:"application/pdf", data:await toB64(file)}); bi.style.width="50%";
-    const r=await fetch(S.apiUrl,{method:"POST",body:JSON.stringify(v)}); const j=await r.json(); bi.style.width="100%";
-    if(!j.ok) throw new Error(j.error||"접수 실패");
-    out.innerHTML=`<div class="result">접수됐습니다<b>${j.id}</b>${pi} 교수님 · ${fname()}<br><small>담당자가 내려받아 ZEUS 지급신청으로 처리합니다.</small></div>`;
-    file=null; drop.textContent="여기에 PDF를 끌어다 놓거나 눌러서 고르세요"; drop.classList.remove("has"); $("desc").value=""; $("amount").value=""; $("memo").value=""; preview();
-  }catch(e){ out.innerHTML=`<div class="err">올리지 못했습니다: ${e.message}</div>`; }
-  finally{ $("send").disabled=false; setTimeout(()=>{bar.style.display="none";bi.style.width="0";},800); }
+  $("send").disabled=true; const bar=$("bar"), bi=bar.querySelector("i"); bar.style.display="block";
+  let ok=0, fail=0;
+  for(let i=0;i<todo.length;i++){ const r=todo[i]; bi.style.width=Math.round(100*i/todo.length)+"%";
+    try{
+      const memo=$("memo").value.trim();
+      const v={ action:"submit", type:SB[r.sb]||("세목 "+r.sb), pi:r.pi, name:who, email, project:`${r.acct}-${r.sb}`, amount:String(r.amount).replace(/\D/g,""), desc:`${r.desc}${memo?"\n메모: "+memo:""}`, payment:r.pay, urgent:"", files:[{name:fname(r), type:"application/pdf", data:await toB64(r.file)}] };
+      const res=await fetch(S.apiUrl,{method:"POST",body:JSON.stringify(v)}); const j=await res.json();
+      if(!j.ok) throw new Error(j.error||"접수 실패");
+      r.status="done"; r.id=j.id; ok++;
+    }catch(e){ r.status="fail"; r.err=e.message; fail++; }
+    render();
+  }
+  bi.style.width="100%";
+  out.innerHTML=`<div class="result">접수 완료 <b>${ok}건</b>${fail?` · 실패 ${fail}건(빨간 줄 — 다시 '접수함에 올리기')`:""}<br><small>담당자가 내려받아 ZEUS 지급신청으로 처리합니다. 전자결재만 사람이 합니다.</small></div>`;
+  $("send").disabled=rows.every(r=>r.status==="done");
+  setTimeout(()=>{bar.style.display="none";bi.style.width="0";},800);
 };
 </script>
 </body>
