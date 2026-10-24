@@ -16,6 +16,7 @@ body.cmp .card .pts,body.cmp .card>p:not(.meta):not(.chg),body.cmp .card details
 .card{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--teal);border-radius:10px;padding:14px 16px;margin:0 0 14px}
 .card.red{border-left-color:var(--red)}.card.org{border-left-color:var(--org)}
 .top{display:flex;flex-wrap:wrap;align-items:center;gap:4px}.dd{margin-left:auto;font-size:15px}.red .dd{color:var(--red)}.org .dd{color:var(--org)}.teal .dd{color:var(--teal)}
+.leg{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:6px 12px;margin:0 0 12px;font-size:13px}.leg ul{margin:6px 0;padding-left:18px;line-height:1.9}
 .own{display:inline-block;padding:0 8px;border-radius:10px;font-size:12px;border:1px solid;background:var(--card)}
 .chip,.lvl{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;color:#fff}.l1{background:#16325c}.l2{background:#6b7280}
 h3{margin:8px 0 4px;font-size:17px;line-height:1.45}h3 a{color:inherit;text-decoration:none}.meta{color:var(--mute);font-size:13px;margin:0 0 6px}
@@ -34,6 +35,11 @@ h2{font-size:18px;margin:28px 0 10px}.past .card{opacity:.6}footer{color:var(--m
 <select id="srt" aria-label="정렬"><option value="due">마감 빠른 순</option><option value="new">새로 안내된 순</option></select>
 <button class="tg" id="cmp" type="button">간단히 보기</button><button class="tg" id="ics" type="button" title="보이는 공고의 마감일을 캘린더 파일(.ics)로 받기">📅 마감일 .ics</button></div>
 <div class="bar" id="f"><button class="on" data-k="">전체</button><button data-k="신소재">신소재</button><button data-k="기계로봇">기계로봇</button><button data-k="환경·에너지">환경·에너지</button><button data-k="상">관련도 상만</button><button data-k="own" title="공고문에서 대학이 주관기관으로 신청할 수 있다고 확인한 공고">대학 주관 가능</button></div><p class="rc" id="rc"></p></div>
+<details class="leg"><summary>ⓘ 읽는 법 — 색과 표시의 뜻</summary><ul>
+<li><b>마감(카드 왼쪽 띠·D-day)</b>: <b style="color:var(--red)">빨강</b> 7일 이내 · <b style="color:var(--org)">주황</b> 14일 이내 · <b style="color:var(--teal)">초록</b> 그 뒤</li>
+<li><b>관련도</b>: <span class="lvl l1">관련도 상</span> 학과 분야와 맞고 대학이 주관으로 신청할 수 있는 공고 · <span class="lvl l2">관련도 중</span> 공학 전반·국제협력·수요조사이거나 대학은 공동기관으로 참여</li>
+<li><b>🏛 주관 자격</b>: <span class="own" style="color:#15803d;border-color:#15803d">🏛 대학 주관 가능</span> 교수님이 주관(책임)기관으로 신청 가능 · <span class="own" style="color:#b45309;border-color:#b45309">🏛 대학은 공동기관</span> 기업·출연연·다른 지역 기관이 주관하고 대학은 공동·컨소시엄으로 참여 · 표시 없음 = 공고문에서 아직 확인 못 함</li>
+<li><b>NEW</b>: 처음 안내된 지 3일 이내 · <b>🔄 변경 안내</b>: 이미 안내한 공고의 마감 연장·정정</li></ul></details>
 <section id="live"><article class="card red" id="c-024160" data-due="2026-10-27" data-first="2026-10-24" data-s="2026년 4극3특 호남권 과학기술혁신지원사업 연구단 모집 공고(연장공고) 4극3특 호남권 연구단 과학기술정보통신부 연구개발특구진흥재단 gist 4극3특 호남권 지역자율r&amp;d 사업단이 연구단을 모집합니다(연장공고). 시범사업 &#x27;26.10.~&#x27;27.3., 국비 100%. 10.27.(화) 15:00 마감입니다. 신소재 기계로봇 환경·에너지" data-t="4극3특 호남권 연구단" data-u="https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024160&amp;ancmPrg=ancmIng" data-dept="신소재 기계로봇 환경·에너지" data-lvl="상" data-own="1">
 <div class="top"><span class="lvl l1">관련도 상</span><span class="chip" style="background:#7c3aed">신소재</span><span class="chip" style="background:#0369a1">기계로봇</span><span class="chip" style="background:#15803d">환경·에너지</span><span class="own" style="color:#15803d;border-color:#15803d">🏛 호남권 기관 주관 가능</span><span class="new" hidden>NEW</span><b class="dd">D-3</b></div>
 <h3><a href="https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024160&amp;ancmPrg=ancmIng">2026년 4극3특 호남권 과학기술혁신지원사업 연구단 모집 공고(연장공고)</a></h3>
