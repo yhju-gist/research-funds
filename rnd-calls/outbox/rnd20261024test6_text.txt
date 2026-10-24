@@ -1,0 +1,61 @@
+공과대학 교수님들께,
+
+새로 확인된 연구과제 공고 중 공과대학(신소재공학과·기계로봇공학과·환경·에너지공학과)과 관련된 공고를 정리해 드립니다.
+
+[D-3] 2026년 4극3특 호남권 과학기술혁신지원사업 연구단 모집 공고(연장공고)
+  연구개발특구진흥재단 · 관련도 상 · 신소재/기계로봇/환경·에너지 · 마감 10.27.(화)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024160&ancmPrg=ancmIng
+
+[D-9] '27년 민·군규격표준화사업 신규 연구개발과제 수요조사
+  국방기술품질원(국방과학연구소 게시) · 관련도 중 · 신소재/기계로봇 · 마감 11.2.(월)
+  https://www.add.re.kr/kps/publicNtis/ntisList?menuId=MENU02201
+
+[D-11] 2026년도 한-독 2+2 국제공동기술개발사업 공고
+  한국산업기술진흥원(KIAT) · 관련도 상 · 기계로봇/신소재 · 마감 11.4.(수)
+  https://www.ntis.go.kr/rndgate/eg/un/ra/view.do?roRndUid=1275821
+
+[D-12] 2026년도 퀀텀(양자)플랫폼 양자공동연구실(JQL) 신규과제 공모 — KRISS 차세대양자연구거점·KIST 양자활용연구거점 2건
+  한국연구재단 · 관련도 중 · 신소재 · 마감 11.5.(목)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024337&ancmPrg=ancmIng
+
+[D-13] KEIT 2027년도 기술수요조사 2건 — 제조공급망강화표준물질개발, 제품안전관리기술개발및실증
+  한국산업기술기획평가원(KEIT) · 관련도 중 · 신소재/기계로봇 · 마감 11.6.(금)
+  https://www.ntis.go.kr/rndgate/eg/un/ra/view.do?roRndUid=1279830
+
+[D-16] 2026년 지역거점 AX 혁신 기술개발 사업 신규지원 대상과제 공고 (표준모델 AX R&D / 공정·응용 솔루션·응용 제품 AX R&D)
+  정보통신산업진흥원 · 관련도 중 · 기계로봇 · 마감 11.9.(월)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024397&ancmPrg=ancmPre
+
+[D-16] 국방과학연구소 위탁연구 제안서 공모 — 위성항법시스템의 성능지표 분석 및 검증 기법 연구
+  국방과학연구소(ADD) · 관련도 중 · 기계로봇 · 마감 11.9.(월)
+  https://www.add.re.kr/kps/publicNtis/ntisList?menuId=MENU02201
+
+[D-17] 2026년도 에너지기술 수용성 제고 및 사업화 촉진 사업 신규지원 대상 연구개발과제 공고
+  한국에너지기술평가원 · 관련도 중 · 환경·에너지 · 마감 11.10.(화)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024457&ancmPrg=ancmIng
+
+[D-18] 2026년도 한-중(CSTEC) 신진과학자교류사업(파견) 신규과제 공모
+  한국연구재단 · 관련도 중 · 신소재/기계로봇/환경·에너지 · 마감 11.11.(수)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024437&ancmPrg=ancmIng
+
+[D-19] 2026년도 미래개척융합과학기술개발사업(한계돌파 R&D) 신규과제 공모
+  한국연구재단 · 관련도 상 · 신소재/기계로봇/환경·에너지 · 마감 11.12.(목)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024037&ancmPrg=ancmPre
+
+[D-24] 2026년 한미 이공분야 학생인력교류 프로그램(NSF IRES) 운영지원사업 신규과제 공모
+  한국연구재단 · 관련도 중 · 신소재/기계로봇/환경·에너지 · 마감 11.17.(화)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024477&ancmPrg=ancmIng
+
+[D-25] 국방과학연구소 위탁연구 제안서 공모 2건 — 탄소섬유/고내열 수지 계면 강화, 고내열 수지 조성 해석·검증
+  국방과학연구소(ADD) · 관련도 상 · 신소재/기계로봇 · 마감 11.18.(수)
+  https://www.add.re.kr/kps/publicNtis/ntisList?menuId=MENU02201
+
+[D-27] 2026년도 제3차 기계장비산업기술개발사업 신규지원 대상과제 공고
+  한국산업기술기획평가원 · 관련도 중 · 기계로봇 · 마감 11.20.(금)
+  https://www.iris.go.kr/contents/retrieveBsnsAncmView.do?ancmId=024578&ancmPrg=ancmPre
+
+공고 모아보기: https://yhju-gist.github.io/research-funds/rnd-calls/
+※ 세부 내용은 각 공고문을 기준으로 해 주시기 바랍니다.
+
+감사합니다.
+주영현 배상 (GIST 공과대학 교학팀 · T.6164)
