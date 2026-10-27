@@ -52,6 +52,7 @@ h2{font-size:24px;margin:36px 0 12px}footer{font-size:15px}
 .fz{font-weight:900}
 @media (min-width:1100px){.lay{display:grid;grid-template-columns:400px minmax(0,1fr);gap:32px;align-items:start;margin-top:22px}
 .side{position:sticky;top:12px;max-height:calc(100vh - 24px);overflow:auto;padding-bottom:12px}.side .idx{margin:0}.tools{padding-top:0}}
+@media (min-width:1800px){.wrap{max-width:1760px}.lay{grid-template-columns:440px minmax(0,1fr)}}   /* v2.16: 아주 넓은 화면은 글자를 기본으로 키워 여백을 채움(카드는 1열 유지 — 지그재그 순서 피함) */
 @media (max-width:1099px){.tools{position:static}.lay{margin-top:16px}.wrap{padding:0 14px}header h1{font-size:30px}h3{font-size:21px}}
 </style></head><body>
 <header><div class="wrap"><p>GIST 공과대학 교학팀</p><h1>연구과제 공고 모아보기</h1>
@@ -249,9 +250,9 @@ document.querySelectorAll('.card.hit').forEach(x=>x.classList.remove('hit'));if(
 window.addEventListener('hashchange',go);
 try{if(innerWidth<1100&&!location.hash)document.getElementById('idx').open=false}catch(_){}   // v2.16: 휴대폰은 목록 접어 두고 카드부터
 // v2.16: 글자 크기(가− / 가+) — 이 브라우저에만 기억
-(function(){const Z=[0.9,1,1.12,1.25,1.4];let i=1;try{const v=+localStorage.getItem('fz');if(v>=0&&v<Z.length)i=v}catch(_){}
-const ap=()=>{document.querySelector('main').style.zoom=Z[i];try{localStorage.setItem('fz',i)}catch(_){}};ap();
-document.getElementById('fzp').onclick=()=>{if(i<Z.length-1){i++;ap()}};document.getElementById('fzm').onclick=()=>{if(i>0){i--;ap()}};})();
+(function(){const Z=[0.9,1,1.12,1.25,1.4];let i=innerWidth>=2400?3:innerWidth>=1800?2:1;try{const r=localStorage.getItem('fz2');if(r!==null&&+r>=0&&+r<Z.length)i=+r}catch(_){}
+const ap=()=>{document.body.style.zoom=Z[i];};ap();
+const sv=()=>{try{localStorage.setItem('fz2',i)}catch(_){}};document.getElementById('fzp').onclick=()=>{if(i<Z.length-1){i++;ap();sv()}};document.getElementById('fzm').onclick=()=>{if(i>0){i--;ap();sv()}};})();
 
 L.addEventListener('click',e=>{if(!document.body.classList.contains('cmp')||e.target.closest('a,summary,button'))return;const c=e.target.closest('.card');if(c)c.classList.toggle('open')});
 </script></body></html>
