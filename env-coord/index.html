@@ -309,6 +309,61 @@ html:not([lang="ko"]) .hero h1{font-size:clamp(34px,4.4vw,52px);line-height:1.15
 html[lang="km"] body,html[lang="km"] h1,html[lang="km"] h2,html[lang="km"] h3,html[lang="km"] .q-title,html[lang="km"] .hero h1,html[lang="km"] button,html[lang="km"] select{font-family:"Noto Sans Khmer","Khmer OS System","Khmer OS","Leelawadee UI",var(--sans)}
 html[lang="km"] .hero h1{font-size:clamp(30px,3.8vw,46px);line-height:1.45}
 html[lang="km"] *{letter-spacing:0!important}
+/* ── 살아 있는 화면(2026-11-09): 지도 움직임 · 스크롤 등장 · 결과 연출 · 누름 반응 ── */
+.hero h1 em{background-repeat:no-repeat;background-size:100% 100%;animation:mark 1.1s .45s cubic-bezier(.2,.7,.2,1) backwards}
+@keyframes mark{from{background-size:0 100%}}
+.map{box-shadow:0 18px 40px -30px rgba(20,70,40,.45)}
+.alive path.c{stroke-dasharray:100;animation:draw 1.8s cubic-bezier(.3,.6,.2,1) calc(var(--i,0)*70ms) backwards,breathe 7s ease-in-out calc(var(--i,0)*-.6s) infinite}
+@keyframes draw{from{stroke-dashoffset:100}}
+@keyframes breathe{50%{stroke-opacity:.45}}
+.alive .lk{fill:none;stroke:var(--green);stroke-width:1.1;stroke-opacity:.3;stroke-dasharray:1.4 2.6;stroke-linecap:round;animation:lkin .9s ease-out calc(.9s + var(--i,0)*90ms) backwards,lkflow 9s linear infinite}
+@keyframes lkin{from{stroke-opacity:0}}
+@keyframes lkflow{to{stroke-dashoffset:-40}}
+.alive .pin circle{transform-box:fill-box;transform-origin:center}
+.alive .pin circle.p{fill:none;stroke:var(--green);stroke-width:1.5;opacity:0;animation:ripple 3.2s ease-out calc(1.4s + var(--i,0)*.45s) infinite}
+@keyframes ripple{0%{transform:scale(1);opacity:.55}80%,100%{transform:scale(2.7);opacity:0}}
+.alive .pin circle.o,.alive .pin circle.i{transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.alive .pin:hover circle.o,.alive .pin:focus-visible circle.o{transform:scale(1.18)}
+.alive .pin:hover circle.i{transform:scale(1.35)}
+.alive .pin text,.alive .pin rect{animation:lkin .6s ease-out calc(.5s + var(--i,0)*80ms) backwards}
+.alive .trav{fill:var(--green)}
+.alive .trav-g{fill:var(--green);opacity:.16}
+/* 결과 지도: 내 좌표가 찍히고 다른 출발점으로 선이 이어짐 */
+.coord .alive .lk{stroke-dasharray:100;stroke-opacity:.38;stroke-width:1.3;animation:draw 1s cubic-bezier(.3,.6,.2,1) calc(.7s + var(--i,0)*120ms) backwards}
+.coord .alive .pin:not(.on) circle.p{display:none}
+.coord .alive .pin.on circle.p{stroke-width:2;animation-delay:1.1s;animation-duration:2.4s}
+.coord .alive .pin.on circle.o,.coord .alive .pin.on circle.i{animation:drop .7s cubic-bezier(.3,1.7,.5,1) .25s backwards}
+@keyframes drop{0%{transform:scale(0)}100%{transform:scale(1)}}
+/* 스크롤하면 나타나기 */
+.rv:not(.in){opacity:0}
+.rv.in{animation:rise .65s cubic-bezier(.2,.7,.2,1) var(--d,0ms) backwards}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}}
+@media print{.rv{opacity:1!important;animation:none!important}}
+/* 누르고 올리면 반응 */
+.card,.fcard,.ticket,.ask,.cgrid>div,.ns>div,.career>div{transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s,border-color .12s,background .12s}
+@media(hover:hover){
+ .card:hover,.fcard:hover,.ticket:hover,.ask:hover,.cgrid>div:hover,.ns>div:hover,.career>div:hover,.start:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(20,70,40,.42)}
+ .tcol li{transition:transform .18s,box-shadow .18s}
+ .tcol li:hover{transform:translateY(-2px);box-shadow:0 8px 18px -12px rgba(20,70,40,.45)}
+}
+.start{transition:border-color .15s,transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s}
+.pill,.card,.start,.tabs button,.chip{-webkit-tap-highlight-color:transparent}
+.pill{transition:background .15s,transform .12s}
+.pill:active:not(:disabled),.tabs button:active,.start:active,.card:active{transform:scale(.97)}
+.card[aria-pressed="true"]{animation:pick .32s cubic-bezier(.3,1.5,.5,1)}
+@keyframes pick{40%{transform:scale(1.02)}}
+.card[aria-pressed="true"]::after{animation:pick .32s cubic-bezier(.3,1.5,.5,1)}
+.pill:not(:disabled):not(.ghost){background-image:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.22) 50%,transparent 65%);background-size:250% 100%;background-position:120% 0;background-repeat:no-repeat}
+.pill[data-action="start"],.pill[data-action="next"]:not(:disabled){animation:shine 3.6s ease-in-out 1.6s infinite}
+@keyframes shine{0%,60%{background-position:120% 0}100%{background-position:-120% 0}}
+.trail span.now{animation:now 1.9s ease-in-out infinite}
+@keyframes now{50%{box-shadow:0 0 0 9px rgba(31,110,71,.12)}}
+.trail span.done{animation:pop .4s cubic-bezier(.3,1.7,.5,1) backwards}
+@keyframes pop{from{transform:scale(.4)}}
+.tcol li.on{animation:glow 1.5s ease-out .9s 2}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(31,110,71,.45)}100%{box-shadow:0 0 0 10px rgba(31,110,71,0)}}
+.ico svg{transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.start:hover .ico svg,.card:hover .ico svg{transform:scale(1.12) rotate(-4deg)}
 </style>
 <a class="skip" href="#main">본문으로 이동</a>
 <header class="wrap top"><a href="#" class="brand" aria-label="처음 화면으로"><span class="logo" aria-hidden="true"></span><span><b>환경·에너지공학과</b><small>나의 연구 좌표</small></span></a><div class="top-r"><label class="langsel" data-notr><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3.5-3 14.5 0 18M12 3c3 3.5 3 14.5 0 18"/></svg><select id="lang" aria-label="Language"></select></label><a class="top-event" href="#event">전공설명회 11.12 · 11.20</a></div></header>
@@ -952,5 +1007,50 @@ return {};
 
 })();</script>
 
+
+<script>/* 살아 있는 화면(2026-11-09): 화면 그리기 코드는 그대로 두고, 그려진 뒤에 움직임만 덧붙인다. */
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const NS='http://www.w3.org/2000/svg';
+const PIN={climate:[300,52],ai:[96,64],analysis:[150,122],water:[80,196],ecology:[196,240],energy:[322,214],circular:[336,158]};
+const LINKS=[['climate','ai'],['ai','analysis'],['analysis','water'],['water','ecology'],['ecology','energy'],['energy','circular'],['circular','climate'],['analysis','ecology'],['analysis','circular']];
+const TOUR=['climate','circular','energy','ecology','water','analysis','ai'];
+let uid=0;
+const mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+function seg(a,b,k=.2){const[x1,y1]=PIN[a],[x2,y2]=PIN[b];const dx=x2-x1,dy=y2-y1;return `Q${((x1+x2)/2-dy*k).toFixed(1)} ${((y1+y2)/2+dx*k).toFixed(1)} ${x2} ${y2}`;}
+function liven(svg){
+ if(svg.__alive||!svg.querySelector('.pin'))return;svg.__alive=1;
+ const isRes=!!svg.closest('.coord');const on=svg.querySelector('.pin.on');const act=on&&on.dataset.field;
+ svg.querySelectorAll('path.c').forEach((p,i)=>{p.setAttribute('pathLength','100');p.style.setProperty('--i',i);});
+ const first=svg.querySelector('.pin');
+ const g=mk('g',{class:'links','aria-hidden':'true'});
+ const pairs=isRes&&act?Object.keys(PIN).filter(k=>k!==act).map(k=>[act,k]):LINKS;
+ pairs.forEach(([a,b],i)=>{if(!PIN[a]||!PIN[b])return;const p=mk('path',{d:`M${PIN[a][0]} ${PIN[a][1]} `+seg(a,b),class:'lk',pathLength:'100'});p.style.setProperty('--i',i);g.appendChild(p);});
+ svg.insertBefore(g,first);
+ svg.querySelectorAll('.pin').forEach((pin,i)=>{const r=mk('circle',{class:'p',r:'11','aria-hidden':'true'});pin.style.setProperty('--i',i);pin.insertBefore(r,pin.firstChild);});
+ if(!RM&&!isRes){
+  const id='eee-tour-'+(++uid);let d=`M${PIN[TOUR[0]][0]} ${PIN[TOUR[0]][1]} `;
+  for(let i=0;i<TOUR.length;i++)d+=seg(TOUR[i],TOUR[(i+1)%TOUR.length],.16)+' ';
+  const path=mk('path',{id,d,fill:'none',stroke:'none'});
+  const tg=mk('g',{'aria-hidden':'true'});
+  const glow=mk('circle',{r:'8',class:'trav-g'}),dot=mk('circle',{r:'3.2',class:'trav'});
+  for(const c of [glow,dot]){const am=mk('animateMotion',{dur:'26s',repeatCount:'indefinite',begin:'2.2s',rotate:'auto'});const mp=mk('mpath',{});mp.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href','#'+id);mp.setAttribute('href','#'+id);am.appendChild(mp);c.appendChild(am);c.setAttribute('cx','-50');tg.appendChild(c);}
+  svg.insertBefore(path,first);svg.insertBefore(tg,first);
+ }
+ svg.classList.add('alive');
+}
+const SEL='.sec-head,.start,.flow li,.ticket,.fcard,.ask,.sv,.cgrid>div,.tcol,.ns>div,.career>div,.r-actions,.cards>.card,.more,.qline,.try';
+const io=(!RM&&'IntersectionObserver' in window)?new IntersectionObserver(es=>{let n=0;es.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top||a.boundingClientRect.left-b.boundingClientRect.left).forEach(e=>{const t=e.target;t.style.setProperty('--d',Math.min(n++,9)*70+'ms');t.classList.add('in');io.unobserve(t);t.addEventListener('animationend',()=>{t.classList.remove('rv','in');t.style.removeProperty('--d');},{once:true});});},{threshold:.08,rootMargin:'0px 0px -5% 0px'}):null;
+function scan(){
+ const main=document.querySelector('main');if(!main)return;
+ main.querySelectorAll('.map svg,.coord .r svg').forEach(liven);
+ if(io)main.querySelectorAll(SEL).forEach(el=>{if(el.__rv)return;el.__rv=1;el.classList.add('rv');io.observe(el);});
+}
+let q=0;const kick=()=>{if(q)return;q=requestAnimationFrame(()=>{q=0;scan();});};
+const main=document.querySelector('main');
+if(main){new MutationObserver(kick).observe(main,{childList:true,subtree:true});}
+scan();
+})();
+</script>
 
 </body></html>
